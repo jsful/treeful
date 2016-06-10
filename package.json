@@ -1,13 +1,13 @@
 {
-  "name": "webpack-boilerplate",
-  "version": "2.1.0",
-  "description": "A boilerplate that utilizes Webpack with React",
-  "repository": "git@github.com:justinjung90/webpack-boilerplate.git",
+  "name": "treeful",
+  "version": "1.0.0",
+  "description": "Easy and simple state manager. Seriously.",
   "author": "Justin Jung",
   "license": "MIT",
+  "main": "lib/treeful.js",
   "scripts": {
     "start": "node ./example/server.js",
-    "lint": "eslint ./src/index.js",
+    "lint": "eslint ./src",
     "compile": "babel -d lib/ src/",
     "prepublish": "npm run lint && npm run compile"
   },
@@ -24,8 +24,24 @@
     "openurl": "^1.1.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "rimraf": "^2.5.2",
     "webpack": "n^1.12.11",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-midndleware": "^2.6.0"
+  },
+  "keywords": [
+    "loader",
+    "preloader",
+    "background",
+    "load",
+    "preload"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinjung04/treeful.git"
+  },
+  "homepage": "https://github.com/justinjung04/treeful",
+  "bugs": {
+    "url": "https://github.com/justinjung04/treeful/issues"
   }
 }
