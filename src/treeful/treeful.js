@@ -63,6 +63,12 @@ class Treeful {
 		return this._tree['root'];
 	}
 
+	destroy() {
+		this.ids = [];
+		this._tree = {};
+		__TREEFUL_INSTANCE = null;
+	}
+
 }
 
 class TreefulNode {
