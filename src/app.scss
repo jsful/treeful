@@ -1,21 +1,9 @@
-@import './styles/mixins.scss';
-@import './styles/variables.scss';
-
 html, body, #app {
 	width: 100%;
 	height: 100%;
 	margin: 0;
-	font-size: $font_general;
 }
 
 div {
 	box-sizing: border-box;
-}
-
-
-
-.section {
-	.content {
-
-	}
 }

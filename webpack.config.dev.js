@@ -3,16 +3,10 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        device: './src/device.js',
-        desktop: [
+        app: [
             'eventsource-polyfill', // necessary for hot reloading with IE
             'webpack-hot-middleware/client',
-            './src/app.desktop.js'
-        ],
-        mobile: [
-            'eventsource-polyfill', // necessary for hot reloading with IE
-            'webpack-hot-middleware/client',
-            './src/app.mobile.js'
+            './src/app.js'
         ]
     },
     output: {

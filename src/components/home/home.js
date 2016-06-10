@@ -2,7 +2,7 @@ import './home.scss';
 
 import React, { Component } from 'react';
 
-import {Treeful, TreefulNode} from '../../treeful/treeful';
+import { Treeful } from '../../treeful/treeful';
 
 class Home extends Component {
 	constructor() {
@@ -24,7 +24,7 @@ class Home extends Component {
 
 	cb() {
 
-		alert("PARENT CALLBACK");
+		alert('PARENT CALLBACK');
 
 	}
 
@@ -47,7 +47,7 @@ class ComponentTwo extends Component {
 		super();
 		this.treeful = new Treeful();
 
-		console.log(this.treeful);	
+		console.log(this.treeful);
 	}
 
 	componentDidMount() {
@@ -56,7 +56,7 @@ class ComponentTwo extends Component {
 
 	uncleCallback() {
 
-		alert("UNCLE CALLBACK");
+		alert('UNCLE CALLBACK');
 
 	}
 

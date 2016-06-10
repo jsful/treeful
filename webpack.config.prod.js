@@ -5,9 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        device: './src/device.js',
-        desktop: './src/app.desktop.js',
-        mobile: './src/app.mobile.js'
+        app: './src/app.js'
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -27,6 +25,7 @@ module.exports = {
         new HtmlWebpackPlugin({ 
             filename: 'index.html',
             template: path.join(__dirname, '/src/index.html'),
+            inject: false,
             minify: {
                 removeComments: true,
                 collapseWhitespace: true
@@ -35,7 +34,7 @@ module.exports = {
         new CopyWebpackPlugin([
             {
                 from: path.join(__dirname, '/src/assets'),
-                to: '/assets',
+                to: './assets',
             }
         ])
     ],

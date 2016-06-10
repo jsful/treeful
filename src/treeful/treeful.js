@@ -4,7 +4,7 @@ class Treeful {
 
 	constructor() {
 
-		console.log("constructor: Treeful");
+		console.log('constructor: Treeful');
 
 		if(!__TREEFUL_INSTANCE) {
 	
@@ -68,7 +68,7 @@ class TreefulNode {
 
 		this.id = id;
 		this.children = {};
-		this.value;
+		this.value = value;
 		this.callbacks = [];
 	}
 

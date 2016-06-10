@@ -15,7 +15,7 @@
         "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
         "no-redeclare": [2, {"builtinGlobals": true}],
         "no-undef": 2,
-        "no-console": 2,
+        // "no-console": 2,
         "babel/generator-star-spacing": 1,
         "babel/new-cap": 1,
         "babel/object-shorthand": 1,
