@@ -12,14 +12,11 @@ class App extends Component {
 	constructor() {
 		super();
 
-		let node = new TreefulNode('grandparent');
-		// this.treeful = new Treeful();
+		this.treeful = new Treeful();
 
-		// this.treeful.addParentNode(node);
-
-		// this.treeful.addChildNode('grandparent', new TreefulNode('parent'));
-		// this.treeful.addChildNode('grandparent', new TreefulNode('uncle'));
-		// this.treeful.addChildNode('parent', new TreefulNode('child'));
+		this.treeful.addNode('parent');
+		this.treeful.addNode('uncle');
+		this.treeful.addNode('child', 54, 'parent');
 	}
 
 	render() {

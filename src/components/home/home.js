@@ -17,14 +17,14 @@ class Home extends Component {
 	}
 
 	go () {
-
-		this.treeful.setValue('child', 'TEST');
+		this.treeful.getTree();
+		this.treeful.setData('child', 'TEST');
 
 	}
 
-	cb() {
-
-		alert('PARENT CALLBACK');
+	cb(value, id) {
+	
+		alert(`data: ${value} || id: ${id}`);
 
 	}
 

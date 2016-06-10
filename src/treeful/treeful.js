@@ -3,14 +3,13 @@ var __TREEFUL_INSTANCE = null;
 class Treeful {
 
 	constructor() {
-
-		console.log('constructor: Treeful');
-
 		if(!__TREEFUL_INSTANCE) {
 	
 			__TREEFUL_INSTANCE = this;
 			this._tree = {};
-			this._refs = {};
+			this.ids = [];
+			// this._refs = {};
+			this.addRootNode();
 
 		}
 
@@ -18,61 +17,61 @@ class Treeful {
 
 	}
 
-	addParentNode(node) {
+	addRootNode() {
+		//CHECK TO MAKE SURE ROOT NODE ISNT CREATED
+		let node = new TreefulNode('root');
+
 		let id = node.getId();
+		let temp = {};
+		temp[id] = node;
+		this.ids.push('root');
+
+		this._tree = Object.assign(this._tree, temp);
+	}
+
+	getData(id) {
+		return this._tree[id].getData();
+	}
+
+	subscribe(id, callback) {
+
+		this._tree[id].subscribe(callback);
+
+	}
+
+	setData(id, data) {
+		this._tree[id].setData(data);
+	}
+
+	addNode(id, data = null, parent = 'root') {
+		if(this.ids.indexOf(id) > -1) {
+			console.error(new Error("Cannot use duplicate node IDs"));
+			return;
+		}
+		this.ids.push(id);
+		let node = new TreefulNode(id, data);
 		let temp = {};
 		temp[id] = node;
 
 		this._tree = Object.assign(this._tree, temp);
-		this._refs = Object.assign(this._refs, temp);
 
+		this._tree[parent].addNode(node);
 		return node;
-
-	}
-
-	getValue(nodeId) {
-		return this._refs[nodeId].getValue();
-	}
-
-	subscribe(nodeId, callback) {
-
-		this._refs[nodeId].subscribe(callback);
-
-	}
-
-	setValue(nodeId, value) {
-		this._refs[nodeId].setValue(value);
-	}
-
-	addChildNode(parent, node) {
-
-		let id = node.getId();
-		let temp = {};
-		temp[id] = node;
-
-		this._refs = Object.assign(this._refs, temp);
-
-		this._refs[parent].addNode(node);
-
-		return node;
-
 	}
 
 	getTree() {
-
-		return this._tree;
-
+		return this._tree['root'];
 	}
 
 }
 
 class TreefulNode {
 
-	constructor(id, value) {
+	constructor(id, data = null) {
 
 		this.id = id;
 		this.children = {};
-		this.value = value;
+		this.data = data;
 		this.callbacks = [];
 	}
 
@@ -88,19 +87,21 @@ class TreefulNode {
 		return this;
 	}
 
-	setValue(value) {
-		this.value = value;
-		this.callCallbacks(value);
+	setData(data) {
+		//MAKE SURE THAT THERE IS NO TYPE MUTATION (except null)
+
+		this.data = data;
+		this.callCallbacks(data, this.id);
 	}
 
-	getValue() {
-		return this.value;
+	getData() {
+		return this.data;
 	}
-
-	callCallbacks(value) {
+	
+	callCallbacks(data, id) {
 
 		this.callbacks.forEach((item) => {
-			item(value);
+			item(data, id);
 		});
 
 	}
@@ -120,3 +121,5 @@ class TreefulNode {
 }
 
 export {Treeful, TreefulNode};
+
+
