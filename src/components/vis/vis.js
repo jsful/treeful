@@ -20,8 +20,14 @@ export default class Vis extends Component {
 		this.parentX = this.currentXPos;
 		this.parentY = this.currentYPos;
 
+		this.distanceBetweenNodes = 30;
+
 		this.initialY = this.parentY;
 		this.initialX = this.parentX;
+
+		this.parentGenerated = false;
+
+		this.keys = [];
 
 
 	}
@@ -34,7 +40,7 @@ export default class Vis extends Component {
 	}
 
 	createParentNode() {
-
+		this.parentGenerated = true;
 		let node = new TreefulNode('parent', 20);
 		this.treeful.addParentNode(node);
 		// this.visualize();
@@ -47,8 +53,14 @@ export default class Vis extends Component {
 
 	createChildNode() {
 		let id = this.refs.childName.value;
-
 		let parent = this.refs.option.value;
+
+		if(id == "" || parent == "" || this.keys.indexOf(id) > -1 || !this.parentGenerated) return;
+
+		this.keys.push(id);
+
+		this.refs.childName.value += "_1";
+
 		let node = new TreefulNode(id, 20);
 		this.treeful.addChildNode(parent, node);
 		this.visualize();
@@ -80,7 +92,7 @@ export default class Vis extends Component {
 		let c = Object.keys(node['children']).length;
 
 		//Go down once for direct children
-		this.currentYPos += this.childRadius * 2 + 30;
+		this.currentYPos += this.childRadius * 2 + this.distanceBetweenNodes;
 
 		if(c > 0) {
 
@@ -94,11 +106,11 @@ export default class Vis extends Component {
 					this.parentX = this.currentXPos;
 					this.recursiveDraw(node['children'][key]);
 				} 
-				this.currentXPos += this.childRadius * 2 + 30;	
+				this.currentXPos += this.childRadius * 2 + this.distanceBetweenNodes;	
 			}
 
-			this.currentYPos -= this.childRadius * 2 + 30;
-			this.currentXPos -= c * (this.childRadius * 2 + 30);
+			this.currentYPos -= this.childRadius * 2 + this.distanceBetweenNodes;
+			this.currentXPos -= c * (this.childRadius * 2 + this.distanceBetweenNodes);
 			
 
 
@@ -139,17 +151,21 @@ export default class Vis extends Component {
 		return (
 			<div className='content vis'>
 				<div className='controls'>
-					<button onClick={this.createParentNode.bind(this)}>Add Parent Node</button>
-					<br />
+					<div className='section'>
+						<button onClick={this.createParentNode.bind(this)}>Add Parent Node</button>
+					</div>
 					
+					<div className='section'>
+						<span>Add a child named: </span>
+						<input type='text' ref='childName' placeholder='name'/>
+						<span>To</span>
+						<select ref='option'>
+						</select>
 
-					<select ref='option'>
+						
 
-					</select>
-
-					<input type='text' ref='childName' placeholder='name'/>
-
-					<button onClick={this.createChildNode.bind(this)}>Add Child Node</button>
+						<button onClick={this.createChildNode.bind(this)}>Add Child</button>
+					</div>
 				</div>
 
 				<div className='canvas-container'>
