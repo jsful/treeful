@@ -6,7 +6,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import Home from './components/home/home';
 import Vis from './components/vis/vis';
-import {Treeful, TreefulNode} from './treeful/treeful';
+import Treeful from './treeful/treeful';
 
 class App extends Component {
 	constructor() {
