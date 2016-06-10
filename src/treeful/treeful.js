@@ -21,8 +21,9 @@ export default class Treeful {
 		};
 
 		this.addNode = (id, data = null, parent = 'root') => {
+			console.log(_ids, id + ' to ' + parent);
 			if(_ids.indexOf(id) > -1) {
-				console.error(new Error('Cannot use duplicate node IDs'g));
+				console.error(new Error('Cannot use duplicate node IDs'));
 				return;
 			}
 			const node = new TreefulNode(id, data);

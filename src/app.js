@@ -14,9 +14,10 @@ class App extends Component {
 
 		this.treeful = new Treeful();
 
-		this.treeful.addNode('parent');
-		this.treeful.addNode('uncle');
-		this.treeful.addNode('child', 54, 'parent');
+		this.treeful.addNode('dad')
+		.addNode('boy', 52)
+		.addNode('toy', { count: 1, isTrue: false }, 'boy');
+		console.log(this.treeful.getTree());
 	}
 
 	render() {

@@ -12,13 +12,13 @@ class Home extends Component {
 
 	componentDidMount() {
 
-		this.treeful.subscribe('parent', this.cb.bind(this));
+		// this.treeful.subscribe('parent', this.cb.bind(this));
 
 	}
 
 	go () {
-		this.treeful.getTree();
-		this.treeful.setData('child', 'TEST');
+		console.log(this.treeful.getTree());
+		// this.treeful.setData('child', 'TEST');
 
 	}
 
@@ -49,7 +49,7 @@ class ComponentTwo extends Component {
 	}
 
 	componentDidMount() {
-		this.treeful.subscribe('uncle', this.uncleCallback.bind(this));
+		// this.treeful.subscribe('uncle', this.uncleCallback.bind(this));
 	}
 
 	uncleCallback() {
