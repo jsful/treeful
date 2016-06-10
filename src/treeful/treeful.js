@@ -30,6 +30,10 @@ class Treeful {
 
 	}
 
+	getValue(nodeId) {
+		return this._refs[nodeId].getValue();
+	}
+
 	subscribe(nodeId, callback) {
 
 		this._refs[nodeId].subscribe(callback);
@@ -54,9 +58,9 @@ class Treeful {
 
 	}
 
-	printTree() {
+	getTree() {
 
-		console.log(this._tree);
+		return this._tree;
 
 	}
 
@@ -87,6 +91,10 @@ class TreefulNode {
 	setValue(value) {
 		this.value = value;
 		this.callCallbacks(value);
+	}
+
+	getValue() {
+		return this.value;
 	}
 
 	callCallbacks(value) {

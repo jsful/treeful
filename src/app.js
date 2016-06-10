@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import Home from './components/home/home';
+import Vis from './components/vis/vis';
 import {Treeful, TreefulNode} from './treeful/treeful';
 
 class App extends Component {
@@ -12,13 +13,13 @@ class App extends Component {
 		super();
 
 		let node = new TreefulNode('grandparent');
-		this.treeful = new Treeful();
+		// this.treeful = new Treeful();
 
-		this.treeful.addParentNode(node);
+		// this.treeful.addParentNode(node);
 
-		this.treeful.addChildNode('grandparent', new TreefulNode('parent'));
-		this.treeful.addChildNode('grandparent', new TreefulNode('uncle'));
-		this.treeful.addChildNode('parent', new TreefulNode('child'));
+		// this.treeful.addChildNode('grandparent', new TreefulNode('parent'));
+		// this.treeful.addChildNode('grandparent', new TreefulNode('uncle'));
+		// this.treeful.addChildNode('parent', new TreefulNode('child'));
 	}
 
 	render() {
@@ -34,6 +35,7 @@ ReactDOM.render((
 	<Router history={browserHistory}>
 	    <Route path='/' component={App}>
 	      <IndexRoute component={Home} />
+	      <Route path='vis' component={Vis} />
 	    </Route>
 	  </Router>
 ), document.getElementById('app'));
