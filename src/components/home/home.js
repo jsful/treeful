@@ -2,7 +2,7 @@ import './home.scss';
 
 import React, { Component } from 'react';
 
-import { Treeful } from '../../treeful/treeful';
+import Treeful from '../../treeful/treeful';
 
 class Home extends Component {
 	constructor() {
@@ -46,8 +46,6 @@ class ComponentTwo extends Component {
 	constructor() {
 		super();
 		this.treeful = new Treeful();
-
-		console.log(this.treeful);
 	}
 
 	componentDidMount() {
