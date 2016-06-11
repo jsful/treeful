@@ -1,7 +1,7 @@
 {
   "name": "treeful",
-  "version": "1.0.0",
-  "description": "Easy and simple state manager. Seriously.",
+  "version": "1.0.1",
+  "description": "Coming soon.",
   "author": "Justin Jung",
   "license": "MIT",
   "main": "lib/treeful.js",
@@ -25,16 +25,20 @@
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "rimraf": "^2.5.2",
-    "webpack": "n^1.12.11",
+    "webpack": "^1.12.11",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-midndleware": "^2.6.0"
   },
   "keywords": [
-    "loader",
-    "preloader",
-    "background",
-    "load",
-    "preload"
+    "state",
+    "react",
+    "redux",
+    "flux",
+    "easy",
+    "manager",
+    "tree",
+    "data",
+    "json"
   ],
   "repository": {
     "type": "git",
