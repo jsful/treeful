@@ -21,9 +21,9 @@ class Treeful {
 		};
 
 		this.addNode = (id, data = null, parent = 'root') => {
-			console.log(_ids, id + ' to ' + parent);
+			//if id is not a string? if data is a function? if parent doens't exist?
 			if(_ids.indexOf(id) > -1) {
-				console.error(new Error('Cannot use duplicate node IDs'));
+				throw new Error('Cannot use duplicate node IDs');
 				return;
 			}
 			const node = new TreefulNode(id, data);
@@ -36,14 +36,19 @@ class Treeful {
 		};
 
 		this.setData = (id, data) => {
+			//MAKE SURE THAT THERE IS NO TYPE MUTATION (except null)
 			_tree[id].setData(data);
 		};
 
-		this.getData = id => _tree[id].getData();
+		this.getData = id => {
+			//if id is invalid? not found?
+			return _tree[id].getData();
+		}
 
 		this.getTree = () => _tree['root'];
 
 		this.subscribe = (id, callback) => {
+			//if id is invalid? not found?
 			_tree[id].subscribe(callback);
 		};
 
