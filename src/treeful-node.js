@@ -13,7 +13,6 @@ export default class TreefulNode {
 		};
 
 		this.setData = data => {
-			//MAKE SURE THAT THERE IS NO TYPE MUTATION (except null)
 			_data = data;
 			callCallbacks(_data, _id);
 		};
