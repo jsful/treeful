@@ -2,7 +2,7 @@ import TreefulNode from './treeful-node';
 
 let _treefulInstance = null;
 
-export default class Treeful {
+class Treeful {
 	constructor() {
 		if(_treefulInstance) {
 			return _treefulInstance;	
@@ -56,3 +56,5 @@ export default class Treeful {
 		this.addRootNode();
 	}
 };
+
+export default new Treeful();
