@@ -5,7 +5,7 @@ let _treefulInstance = null;
 class Treeful {
 	constructor() {
 		if(_treefulInstance) {
-			return _treefulInstance;	
+			return _treefulInstance;
 		}
 		_treefulInstance = this;
 		let _tree;
@@ -41,12 +41,12 @@ class Treeful {
 			return _tree[id].getData();
 		};
 
-		this.subscribe = (id, callback) => {
+		this.subscribe = (id, callback, ignoreChildren = false) => {
 			checkIdType(id);
 			checkIdExists(id);
 			checkCallbackType(callback);
 
-			_tree[id].subscribe(callback);
+			_tree[id].subscribe(callback, ignoreChildren);
 		};
 
 		this.destroy = () => {
