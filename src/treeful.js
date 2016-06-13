@@ -26,6 +26,7 @@ class Treeful {
 				throw new Error('Cannot use duplicate node IDs');
 				return;
 			}
+
 			const node = new TreefulNode(id, data);
 			const branch = {};
 			branch[id] = node;
@@ -47,9 +48,9 @@ class Treeful {
 
 		this.getTree = () => _tree['root'];
 
-		this.subscribe = (id, callback) => {
+		this.subscribe = (id, callback, ignoreChildren = false) => {
 			//if id is invalid? not found?
-			_tree[id].subscribe(callback);
+			_tree[id].subscribe(callback, ignoreChildren);
 		};
 
 		this.destroy = () => {

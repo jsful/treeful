@@ -5,7 +5,7 @@ export default class TreefulNode {
 		let _callbacks = [];
 		let _children = {};
 		
-		this.addNode = node => {
+		this.addNode = (node) => {
 			const branch = {};
 			branch[node.getId()] = node;
 			_children = Object.assign(_children, branch);
@@ -14,20 +14,21 @@ export default class TreefulNode {
 
 		this.setData = data => {
 			_data = data;
-			callCallbacks(_data, _id);
+			callCallbacks(_data, _id, true);
 		};
 
 		this.getData = () => _data;
 
 		this.getId = () => _id;
 
-		this.subscribe = callback => {
-			_callbacks.push(callback);
+		this.subscribe = (callback, ignoreChildren = false) => {
+			_callbacks.push({callback, ignoreChildren});
 		};
 
-		const callCallbacks = (data, id) => {
+		const callCallbacks = (data, id, self) => {
 			_callbacks.forEach((item) => {
-				item(data, id);
+				if(!item.ignoreChildren || self)
+					item.callback(data, id);
 			});
 		};
 	}
