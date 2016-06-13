@@ -8,57 +8,107 @@ class Treeful {
 			return _treefulInstance;	
 		}
 		_treefulInstance = this;
-
-		let _tree = {};
-		let _ids = [];
-		
-		this.addRootNode = () => {
-			//CHECK TO MAKE SURE ROOT NODE ISNT CREATED
-			const branch = {};
-			branch['root'] = new TreefulNode('root');
-			_tree = Object.assign({}, branch);
-			_ids.push('root');
-		};
+		let _tree;
 
 		this.addNode = (id, data = null, parent = 'root') => {
-			//if id is not a string? if data is a function? if parent doens't exist?
-			if(_ids.indexOf(id) > -1) {
-				throw new Error('Cannot use duplicate node IDs');
-				return;
-			}
+			checkIdType(id);
+			checkDuplicate(id);
+			checkDataType(data);
+			checkIdExists(parent);
+
 			const node = new TreefulNode(id, data);
 			const branch = {};
 			branch[id] = node;
 			_tree = Object.assign(_tree, branch);
-			_ids.push(id);
 			_tree[parent].addNode(node);
+
 			return this;
 		};
 
 		this.setData = (id, data) => {
-			//MAKE SURE THAT THERE IS NO TYPE MUTATION (except null)
+			checkIdType(id);
+			checkIdExists(id);
+			checkDataType(data);
+			checkTypeMutation(id, data);
+
 			_tree[id].setData(data);
 		};
 
 		this.getData = id => {
-			//if id is invalid? not found?
-			return _tree[id].getData();
-		}
+			checkIdType(id);
+			checkIdExists(id);
 
-		this.getTree = () => _tree['root'];
+			return _tree[id].getData();
+		};
 
 		this.subscribe = (id, callback) => {
-			//if id is invalid? not found?
+			checkIdType(id);
+			checkIdExists(id);
+			checkCallbackType(callback);
+
 			_tree[id].subscribe(callback);
 		};
 
 		this.destroy = () => {
-			_tree = {};
-			_ids = [];
-			_treefulInstance = null;
+			init();
 		};
 
-		this.addRootNode();
+		const init = () => {
+			_tree = {};
+			addRootNode();
+		};
+
+		const addRootNode = () => {
+			const branch = {};
+			branch['root'] = new TreefulNode('root');
+			_tree = Object.assign({}, branch);
+		};
+
+		const checkIdExists = id => {
+			if(Object.keys(_tree).indexOf(id) < 0) {
+				throw new Error('Node with id \'' + id + '\' is not found.');
+			}
+		};
+
+		const checkIdType = id => {
+			if(!isType(id, 'string')) {
+				throw new TypeError('Id must be a string.');
+			}
+		};
+
+		const checkDataType = data => {
+			if(isType(data, 'function')) {
+				throw new TypeError('Data cannot be a function.');
+			}
+		};
+
+		const checkDuplicate = id => {
+			if(Object.keys(_tree).indexOf(id) > -1) {
+				throw new Error('Cannot use duplicate id \'' + id + '\'.');
+			}
+		};
+
+		const checkCallbackType = callback => {
+			if(!isType(callback, 'function')) {
+				throw new TypeError('Callback must be a function.');
+			}
+		};
+
+		const checkTypeMutation = (id, data) => {
+			if(!isType(this.getData(id), null) && !isType(data, getType(this.getData(id)))) {
+				throw new Error('Data type cannot be mutated from ' + getType(this.getData(id)) + ' to ' + getType(data) + '.');
+			}
+		};
+
+		const getType = e => {
+			return {}.toString.call(e).toLowerCase().split(' ')[1].replace(']', '');
+		};
+
+		const isType = (e, type) => {
+			return {}.toString.call(e).toLowerCase().indexOf(type) > -1;
+		};
+
+		init();
 	}
 };
 
