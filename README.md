@@ -13,6 +13,15 @@ Let's not get overwhelmed. Treeful will simply do the following 4 things to your
 npm install treeful
 ```
 
+### Example
+```sh
+git clone https://github.com/justinjung04/treeful.git
+cd treeful
+npm install
+npm start
+```
+The example will run at http://localhost:3000. For source code of each example, please refer to [example](./example).
+
 ## Methods
 
 ### addNode(id, [data, parent])
