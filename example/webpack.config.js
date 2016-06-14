@@ -14,7 +14,11 @@ module.exports = {
         todo: [
             'webpack-hot-middleware/client',
             './example/todo/index.js'
-        ]
+        ],
+        userInfo: [
+            'webpack-hot-middleware/client',
+            './example/userInfo/index.js'
+        ],
     },
     output: {
         path: path.join(__dirname, 'example'),

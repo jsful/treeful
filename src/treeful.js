@@ -46,7 +46,7 @@ export class Treeful {
 			checkIdExists(id);
 			checkCallbackType(callback);
 
-			_tree[id].subscribe(callback, ignoreChildren);
+			return _tree[id].subscribe(callback, ignoreChildren);
 		};
 
 		this.destroy = () => {
