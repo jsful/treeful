@@ -10,6 +10,10 @@ module.exports = {
         react: [
             'webpack-hot-middleware/client',
             './example/react/index.js'
+        ],
+        todo: [
+            'webpack-hot-middleware/client',
+            './example/todo/index.js'
         ]
     },
     output: {
@@ -23,7 +27,8 @@ module.exports = {
     ],
     module: {
         loaders: [
-            { test: /\.js/, loader: 'babel', exclude: /node_modules/ }
+            { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
+            { test: /\.scss$/, loaders: ["style", "css", "sass"] }
         ]
     }
 };
