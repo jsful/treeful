@@ -20,7 +20,7 @@ cd treeful
 npm install
 npm start
 ```
-The example will run at http://localhost:3000. For source code of each example, please refer to [example](./example).
+The example will run at http://localhost:3000. For source codes, please refer to [example](./example).
 
 ## Methods
 
