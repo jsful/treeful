@@ -2,7 +2,7 @@ import TreefulNode from './treeful-node';
 
 let _treefulInstance = null;
 
-class Treeful {
+export class Treeful {
 	constructor() {
 		if(_treefulInstance) {
 			return _treefulInstance;
@@ -48,6 +48,8 @@ class Treeful {
 
 			_tree[id].subscribe(callback, ignoreChildren);
 		};
+
+		this.getTree = () => _tree;
 
 		this.destroy = () => {
 			init();
@@ -105,7 +107,7 @@ class Treeful {
 		};
 
 		const isType = (e, type) => {
-			return {}.toString.call(e).toLowerCase().indexOf(type) > -1;
+			return {}.toString.call(e).toLowerCase().split(' ')[1].replace(']', '').indexOf(type) > -1;
 		};
 
 		init();

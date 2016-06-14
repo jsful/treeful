@@ -5,7 +5,7 @@ export default class TreefulNode {
 		let _callbacks = [];
 		let _children = {};
 		
-		this.addNode = (node) => {
+		this.addNode = node => {
 			const branch = {};
 			branch[node.getId()] = node;
 			_children = Object.assign(_children, branch);
@@ -20,6 +20,8 @@ export default class TreefulNode {
 		this.getData = () => _data;
 
 		this.getId = () => _id;
+
+		this.getChildren = () => _children;
 
 		this.subscribe = (callback, ignoreChildren = false) => {
 			_callbacks.push({callback, ignoreChildren});
