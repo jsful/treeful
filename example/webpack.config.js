@@ -3,21 +3,21 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        vanilla: [
+        "vanilla-counter": [
             'webpack-hot-middleware/client',
-            './example/vanilla/index.js'
+            './example/vanilla-counter/index.js'
         ],
-        react: [
+        "react-counter": [
             'webpack-hot-middleware/client',
-            './example/react/index.js'
+            './example/react-counter/index.js'
         ],
-        todo: [
+        "react-todo": [
             'webpack-hot-middleware/client',
-            './example/todo/index.js'
+            './example/react-todo/index.js'
         ],
-        userInfo: [
+        "react-user": [
             'webpack-hot-middleware/client',
-            './example/userInfo/index.js'
+            './example/react-user/index.js'
         ],
     },
     output: {

@@ -91,19 +91,16 @@ class Profile extends Component {
 class Warning extends Component {
 	constructor() {
 		super();
-		this.unsub = Treeful.subscribe('login', this.loginChanged.bind(this));
+		Treeful.subscribe('login', this.loginChanged.bind(this));
 		this.state = {
 			loggedin: Treeful.getData('login')
 		};
-
 	}
 
 	loginChanged(data) {
-		this.unsub();
 		this.setState({
 			loggedin: data
 		});
-
 	}
 
 	render() {
