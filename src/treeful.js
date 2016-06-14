@@ -49,11 +49,11 @@ export class Treeful {
 			_tree[id].subscribe(callback, ignoreChildren);
 		};
 
-		this.getTree = () => _tree;
-
 		this.destroy = () => {
 			init();
 		};
+
+		this.getTree = () => _tree;
 
 		const init = () => {
 			_tree = {};
