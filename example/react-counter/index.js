@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import CounterControl from './components/counter-control';
 import Counter from './components/counter';
-import Treeful from '../../src/treeful';
+import Treeful from '../../src/treeful-dev';
 
 class App extends Component {
 	constructor () {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Treeful from '../../../src/treeful';
+import Treeful from '../../../src/treeful-dev';
 
 export default class CounterControl extends Component {
 	increment() {

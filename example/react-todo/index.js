@@ -25,7 +25,6 @@ class App extends Component {
 
 	updateTodos(todos) {
 		this.setState({ todos });
-		Treeful.print();
 	}
 
 	render() {

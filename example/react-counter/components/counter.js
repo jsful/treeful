@@ -7,14 +7,18 @@ export default class Counter extends Component {
 		this.state = {
 			count: Treeful.getData('counter')
 		}
-		Treeful.subscribe('counter', this.countUpdated.bind(this));
 	}
 
-	countUpdated(value) {
-		this.setState({
-			count: value
-		});
-		Treeful.print();
+	componentDidMount() {
+		this.unsubscribe = Treeful.subscribe('counter', this.countUpdated.bind(this));
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
+	}
+
+	countUpdated(count) {
+		this.setState({ count });
 	}
 
 	render() {

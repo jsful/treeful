@@ -2,7 +2,16 @@
   "name": "treeful",
   "version": "1.0.2",
   "description": "Coming soon.",
-  "author": "Justin Jung",
+  "author": {
+    "name": "Justin Jung",
+    "email": "justinjung04@gmail.com"
+  },
+  "contributors" : [
+    {
+      "name": "Logan Bittner",
+      "email": "info@loganbittner.com"
+    }
+  ],
   "license": "MIT",
   "main": "lib/treeful.js",
   "scripts": {
