@@ -10,6 +10,7 @@ class App extends Component {
 	constructor () {
 		super();
 		Treeful.addNode('todos', []);
+
 		this.state = {
 			todos: Treeful.getData('todos')
 		};

@@ -26,13 +26,13 @@ export default class TreefulNode {
 		this.subscribe = (callback, ignoreChildren = false) => {
 			_callbacks.push({callback, ignoreChildren});
 			return function(){
-				this.unsubscribe(_callbacks.length - 1);
-			}.bind(this)
+				unsubscribe(_callbacks.length - 1);
+			}.bind(this);
 		};
 
-		this.unsubscribe = (index) => {
+		const unsubscribe = (index) => {
 			_callbacks.splice(index, 1);
-		}
+		};
 
 		const callCallbacks = (data, id, self) => {
 			_callbacks.forEach((item) => {

@@ -6,7 +6,7 @@ export default class Counter extends Component {
 		super();
 		this.state = {
 			count: Treeful.getData('counter')
-		}
+		};
 	}
 
 	componentDidMount() {

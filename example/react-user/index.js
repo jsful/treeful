@@ -10,9 +10,9 @@ import Warning from './components/warning';
 class App extends Component {
 	constructor () {
 		super();
-		Treeful.addNode('user');
-		Treeful.addNode('username', "lbittner", 'user');
-		Treeful.addNode('login', false, 'user');
+		Treeful.addNode('user')
+			.addNode('username', 'lbittner', 'user')
+			.addNode('login', false, 'user');
 	}
 
 	render() {

@@ -6,7 +6,7 @@
     "name": "Justin Jung",
     "email": "justinjung04@gmail.com"
   },
-  "contributors" : [
+  "contributors": [
     {
       "name": "Logan Bittner",
       "email": "info@loganbittner.com"
@@ -17,6 +17,7 @@
   "scripts": {
     "start": "node ./example/server.js",
     "lint": "eslint ./src",
+    "lint:example": "eslint ./example",
     "compile": "babel -d lib/ src/",
     "prepublish": "npm run lint && npm run compile"
   },

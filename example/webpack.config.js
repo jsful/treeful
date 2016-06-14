@@ -3,19 +3,19 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        "vanilla-counter": [
+        'vanilla-counter': [
             'webpack-hot-middleware/client',
             './example/vanilla-counter/index.js'
         ],
-        "react-counter": [
+        'react-counter': [
             'webpack-hot-middleware/client',
             './example/react-counter/index.js'
         ],
-        "react-todo": [
+        'react-todo': [
             'webpack-hot-middleware/client',
             './example/react-todo/index.js'
         ],
-        "react-user": [
+        'react-user': [
             'webpack-hot-middleware/client',
             './example/react-user/index.js'
         ],
@@ -32,7 +32,7 @@ module.exports = {
     module: {
         loaders: [
             { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
-            { test: /\.scss$/, loaders: ["style", "css", "sass"] }
+            { test: /\.scss$/, loaders: ['style', 'css', 'sass'] }
         ]
     }
 };

@@ -9,7 +9,7 @@ class TreefulDev extends Treeful {
 		this.setData = (id, data) => {
 			parentSetData(id, data);
 			this.print();
-		}
+		};
 
 		this.print = (_id = 'root') => {
 			let _tree = this.getTree();
