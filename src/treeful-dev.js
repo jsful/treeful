@@ -13,16 +13,7 @@ class TreefulDev extends Treeful {
 				if(id != _id) {
 					output += '\n\n';
 				}
-
-				const data = _tree[id].getData();
-				output += printTabs(depth);
-				if(isType(data, 'array')) {
-					output += id + ': [ ' + data.join(', ') + ' ]';
-				} else if(isType(data, 'object')) {
-					output += id + ': ' + printObject(data, depth);
-				} else {
-					output += id + ': ' + data;
-				}
+				output += printTabs(depth) + printPerType(id, _tree[id].getData(), depth);
 
 				Object.keys(_tree[id].getChildren()).forEach(childId => {
 					push(childId, depth + 1);
@@ -47,12 +38,7 @@ class TreefulDev extends Treeful {
 			const printObject = (obj, depth) => {
 				let objectString = '{\n';
 				Object.keys(obj).forEach(key => {
-					objectString += printTabs(depth + 1);
-					if(isType(obj[key], 'object')) {
-						objectString += key + ': ' + printObject(obj[key], depth + 1) + '\n';
-					} else {
-						objectString += key + ': ' + obj[key] + '\n';
-					}
+					objectString += printTabs(depth + 1) + printPerType(key, obj[key], depth);
 				});
 				objectString += printTabs(depth) + '}';
 				return objectString;
@@ -64,6 +50,18 @@ class TreefulDev extends Treeful {
 					tabs += '\t';
 				}
 				return tabs;
+			};
+
+			const printPerType = (key, value, depth) => {
+				let output = '';
+				if(isType(value, 'array')) {
+					output += key + ': [ ' + value.join(', ') + ' ]';
+				} else if(isType(value, 'object')) {
+					output += key + ': ' + printObject(value, depth);
+				} else {
+					output += key + ': ' + value;
+				}
+				return output;
 			};
 
 			iterate(_id, 0);
