@@ -11,7 +11,7 @@
     "scripts": {
         "start": "node ./example/server.js",
         "lint": "eslint ./src ./example ./test",
-        "test": "npm run lint",
+        "test": "mocha --compilers js:babel-core/register",
         "compile": "babel -d lib/ src/",
         "prepublish": "npm run lint && npm run compile"
     },

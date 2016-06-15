@@ -22,6 +22,7 @@ export default class TreefulNode {
 		this.getId = () => _id;
 
 		this.getChildren = () => _children;
+		this.getCallbacks = () => _callbacks;
 
 		this.subscribe = (callback, ignoreChildren = false) => {
 			_callbacks.push({callback, ignoreChildren});
