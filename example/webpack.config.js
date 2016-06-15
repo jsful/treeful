@@ -23,6 +23,7 @@ module.exports = {
             'webpack-hot-middleware/client',
             './example/react-performance/index.js'
         ],
+
     },
     output: {
         path: path.join(__dirname, 'example'),
