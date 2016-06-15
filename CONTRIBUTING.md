@@ -13,11 +13,11 @@ Let's not branch the tree too much! Treeful must stay simple and straight-forwar
 
 ### Pull requests
 1. Fork the repository.
-2. Create a branch from `develop`.
+2. Create a branch from `master`.
 3. Update the source code using code conventions described below.
 4. Commit and push the changes with descriptive messages.
 5. Test your code with `npm run test`.
-7. Create a pull request to `develop`.
+7. Create a pull request to `master`.
 
 ### Code conventions
 - Tab indentation (size of 4 spaces).

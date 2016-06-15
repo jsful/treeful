@@ -26,21 +26,21 @@ The example will run at http://localhost:3000. For source codes, please refer to
 ### addNode(id, [data, parent])
 Add a node to Treeful object.
 * `id` (string) - unique string id.
-* `data` (anything except function, optional) - data to be stored in the node. It can be in any type except function. Default is `null`.
+* `data` (anything but function, optional) - data to be stored in the node. It can be in any type except function. Default is `null`.
 * `parent` (string, optional) - string id of a parent node. Default is `root`.
 
 **Returns** Treeful object. Allows addNode to be called in a chain.
 
 ### setData(id, data)
-Sets(updates) data in a node.
+Sets data in a node.
 * `id` (string) - string id of a node.
-* `data` (same as existing data type) - data to be set(updated) in the node. Data type CANNOT be modified.
+* `data` (same as existing data type) - data to be set in the node. Data type CANNOT be modified.
 
 ### getData(id)
-Gets(reads) data in a node.
+Gets data in a node.
 * `id` (string) - string id of a node.
 
-**Returns** Data of the node
+**Returns** Data in the node
 
 ### subscribe(id, callback, [ignoreChildren])
 Assigns a callback function to a node. The callback function is triggered when the node or its child nodes get updated.
