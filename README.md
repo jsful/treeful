@@ -1,4 +1,5 @@
 # Treeful
+[![npm version][npm-img]][npm-url]
 
 It's a(nother) state manager! But let's not get overwhelmed. Treeful will simply do the following 4 things to your app.
 
@@ -93,3 +94,6 @@ Join the party - please refer to [CONTRIBUTING](CONTRIBUTING.md).
 
 ## License
 MIT - please refer to [LICENSE](LICENSE).
+
+[npm-url]: https://www.npmjs.org/package/treeful
+[npm-img]: https://img.shields.io/npm/v/treeful.svg
