@@ -16,7 +16,6 @@
         "no-unused-vars": [2, { "vars": "all", "args": "after-used" }],
         "no-redeclare": [2, { "builtinGlobals": true }],
         "brace-style": [2, "1tbs"],
-        "no-undef": 2,
         "no-alert": 2,
         "babel/object-shorthand": 2,
         "react/jsx-uses-react": 2,
