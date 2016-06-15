@@ -54,8 +54,10 @@ export class Treeful {
 		};
 
 		this.getTree = () => _tree;
-		this.getChildren = (id) => {return _tree[id].getChildren()}
-		this.getCallbacks = (id) => {return _tree[id].getCallbacks()}
+
+		this.getChildren = id => _tree[id].getChildren();
+
+		this.getCallbacks = id => _tree[id].getCallbacks();
 
 		const init = () => {
 			_tree = {};

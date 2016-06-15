@@ -28,5 +28,4 @@ Let's not branch the tree too much! Treeful must stay simple and straight-forwar
 - Object shorthand for ES6.
 - Minimum line breaks.
 - No `use strict`.
-- No dangling commas on arrays and objects.
 - No `alert`, `confirm` and `prompt`.

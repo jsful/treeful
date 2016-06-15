@@ -1,6 +1,8 @@
 example
 lib/treeful-dev.js
 src
+test
 .babelrc
 .eslintrc
 .travis.yml
+CONTRIBUTING.md
