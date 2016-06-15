@@ -11,20 +11,35 @@ describe('treeful', () => {
 		expect(methods).toContain('destroy');
 	});
 
+	it('resets tree when destroy is called', () => {
+		Treeful.addNode('test');
+		Treeful.destroy();
+		let children = Object.keys(Treeful.getChildren('root'));
+		expect(children.length).toEqual(0);
+	});
+
 	it('creates the root node automatically', () => {
 		let tree = Treeful.getTree();
 		let nodes = Object.keys(tree);
 		expect(nodes).toContain('root');
 	});
 
-	it('defaults to adding a node to root', () => {
+	it('adds a node to root if parent is not specified', () => {
 		Treeful.addNode('test');
 		let children = Object.keys(Treeful.getChildren('root'));
 		expect(children).toContain('test');
 		Treeful.destroy();
 	});
 
-	it('throws if duplicate id is used', () => {
+	it('throws if parent doesn\'t exist', () => {
+		Treeful.addNode('test');
+		expect(() => {
+			Treeful.addNode('test1', 0, 'test2');
+		}).toThrow();
+		Treeful.destroy();
+	});
+
+	it('throws if id is a duplicate', () => {
 		Treeful.addNode('test');
 		expect(() => {
 			Treeful.addNode('test');
@@ -39,7 +54,7 @@ describe('treeful', () => {
 		Treeful.destroy();
 	});
 
-	it('passes initial data into nodes inital state', () => {
+	it('stores passed data into node', () => {
 		Treeful.addNode('test', 56);
 		let data = Treeful.getData('test');
 		expect(data).toEqual(56);
@@ -54,16 +69,22 @@ describe('treeful', () => {
 		Treeful.destroy();
 	});
 
-	it('throws if a function is passed in as data', () => {
+	it('throws if a function is passed as data', () => {
 		expect(() => {
 			Treeful.addNode('test', () => {
+				console.log('');
+			});
+		}).toThrow();
+		Treeful.addNode('test');
+		expect(() => {
+			Treeful.setData('test', () => {
 				console.log('');
 			});
 		}).toThrow();
 		Treeful.destroy();
 	});
 
-	it('throws if a node id is passed that doesnt exist', () => {
+	it('throws if a node id doesn\'t exist', () => {
 		Treeful.addNode('test');
 		expect(() => {
 			Treeful.getData('node');
@@ -78,7 +99,7 @@ describe('treeful', () => {
 		Treeful.destroy();
 	});
 
-	it('allows multiple subscribtions on a single node', () => {
+	it('allows multiple subscriptions on a single node', () => {
 		Treeful.addNode('test', 50);
 		Treeful.subscribe('test', () => {
 			console.log('sub1');
@@ -91,7 +112,7 @@ describe('treeful', () => {
 		Treeful.destroy();
 	});
 
-	it('calls callback functions when a nodes data is changed, and passes data', () => {
+	it('calls callback functions when a node\'s data is changed, and passes data', () => {
 		let callbackData = 0;
 		let cb = data => {
 			callbackData = data;
@@ -103,7 +124,7 @@ describe('treeful', () => {
 		Treeful.destroy();
 	});
 
-	it('passes an unsubscribe function when you call subscribe', () => {
+	it('returns an unsubscribe function when you call subscribe', () => {
 		var callbackData = 0;
 		let cb = data => {
 			callbackData = data;
@@ -164,12 +185,3 @@ describe('treeful', () => {
 		Treeful.destroy();
 	});
 });
-
-
-
-
-
-
-
-
-

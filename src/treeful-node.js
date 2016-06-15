@@ -17,11 +17,12 @@ export default class TreefulNode {
 			callCallbacks(_data, _id, true);
 		};
 
-		this.getData = () => _data;
-
 		this.getId = () => _id;
 
+		this.getData = () => _data;
+
 		this.getChildren = () => _children;
+
 		this.getCallbacks = () => _callbacks;
 
 		this.subscribe = (callback, ignoreChildren = false) => {
