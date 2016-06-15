@@ -114,7 +114,7 @@ describe('treeful', () => {
 
 	it('calls callback functions when a node\'s data is changed, and passes data', () => {
 		let callbackData = 0;
-		let cb = data => {
+		let cb = (data) => {
 			callbackData = data;
 		};
 		Treeful.addNode('test');
@@ -126,7 +126,7 @@ describe('treeful', () => {
 
 	it('returns an unsubscribe function when you call subscribe', () => {
 		var callbackData = 0;
-		let cb = data => {
+		let cb = (data) => {
 			callbackData = data;
 		};
 		Treeful.addNode('test', 0);
@@ -141,7 +141,7 @@ describe('treeful', () => {
 
 	it('calls callback when a child node is updated', () => {
 		var callbackData = 0;
-		let cb = data => {
+		let cb = (data) => {
 			callbackData = data;
 		};
 		Treeful.addNode('test');
@@ -154,7 +154,7 @@ describe('treeful', () => {
 
 	it('ignores child callbacks if ignore flag is set', () => {
 		var callbackData = 0;
-		let cb = data => {
+		let cb = (data) => {
 			callbackData = data;
 		};
 		Treeful.addNode('test');

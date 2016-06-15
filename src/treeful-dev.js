@@ -21,7 +21,7 @@ class TreefulDev extends Treeful {
 				}
 				output += printTabs(depth) + printPerType(id, _tree[id].getData(), depth);
 
-				Object.keys(_tree[id].getChildren()).forEach(childId => {
+				Object.keys(_tree[id].getChildren()).forEach((childId) => {
 					push(childId, depth + 1);
 				});
 
@@ -43,14 +43,14 @@ class TreefulDev extends Treeful {
 
 			const printObject = (obj, depth) => {
 				let objectString = '{\n';
-				Object.keys(obj).forEach(key => {
+				Object.keys(obj).forEach((key) => {
 					objectString += printTabs(depth + 1) + printPerType(key, obj[key], depth + 1) + '\n';
 				});
 				objectString += printTabs(depth) + '}';
 				return objectString;
 			};
 
-			const printTabs = depth => {
+			const printTabs = (depth) => {
 				let tabs = '';
 				for(let i=0; i<depth; i++) {
 					tabs += '\t';

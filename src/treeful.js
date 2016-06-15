@@ -34,7 +34,7 @@ export class Treeful {
 			_tree[id].setData(data);
 		};
 
-		this.getData = id => {
+		this.getData = (id) => {
 			checkIdType(id);
 			checkIdExists(id);
 
@@ -55,9 +55,9 @@ export class Treeful {
 
 		this.getTree = () => _tree;
 
-		this.getChildren = id => _tree[id].getChildren();
+		this.getChildren = (id) => _tree[id].getChildren();
 
-		this.getCallbacks = id => _tree[id].getCallbacks();
+		this.getCallbacks = (id) => _tree[id].getCallbacks();
 
 		const init = () => {
 			_tree = {};
@@ -70,31 +70,31 @@ export class Treeful {
 			_tree = Object.assign({}, branch);
 		};
 
-		const checkIdExists = id => {
+		const checkIdExists = (id) => {
 			if(Object.keys(_tree).indexOf(id) < 0) {
 				throw new Error('Node with id \'' + id + '\' is not found.');
 			}
 		};
 
-		const checkIdType = id => {
+		const checkIdType = (id) => {
 			if(!isType(id, 'string')) {
 				throw new TypeError('Id must be a string.');
 			}
 		};
 
-		const checkDataType = data => {
+		const checkDataType = (data) => {
 			if(isType(data, 'function')) {
 				throw new TypeError('Data cannot be a function.');
 			}
 		};
 
-		const checkDuplicate = id => {
+		const checkDuplicate = (id) => {
 			if(Object.keys(_tree).indexOf(id) > -1) {
 				throw new Error('Cannot use duplicate id \'' + id + '\'.');
 			}
 		};
 
-		const checkCallbackType = callback => {
+		const checkCallbackType = (callback) => {
 			if(!isType(callback, 'function')) {
 				throw new TypeError('Callback must be a function.');
 			}
@@ -106,7 +106,7 @@ export class Treeful {
 			}
 		};
 
-		const getType = e => {
+		const getType = (e) => {
 			return {}.toString.call(e).toLowerCase().split(' ')[1].replace(']', '');
 		};
 

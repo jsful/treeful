@@ -11,7 +11,7 @@ const onClickDec = () => {
 	Treeful.setData('count', Treeful.getData('count') - 1);
 };
 
-const counterUpdated = data => {
+const counterUpdated = (data) => {
 	document.getElementById('count').innerHTML = data;
 };
 
