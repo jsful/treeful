@@ -54,7 +54,7 @@ Assigns a callback function to a node. The callback function is triggered when t
 Resets the tree.
 
 ## Join the party!
-You are always more than wel - test
+You are always more than wel
 
 ## License
 MIT - please refer to [LICENSE](LICENSE).
