@@ -32,6 +32,7 @@ Treeful.addNode('filter', 'all', 'todos'); //Add Node with id of 'filter' to 'to
 ```
 
 Our tree now looks like this:
+
 ![Tree](https://github.com/justinjung04/treeful/blob/develop/example.png)
 
 Subscribe to a node by calling:
