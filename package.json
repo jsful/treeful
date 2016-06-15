@@ -1,9 +1,11 @@
 {
     "name": "treeful",
     "version": "1.0.2",
-    "description": "Coming soon.",
+    "description": "Let's not get overwhelmed. It's just a state manager.",
     "author": "Justin Jung <justinjung04@gmail.com>",
-    "contributors": [ "Logan Bittner <info@loganbittner.com>" ],
+    "contributors": [ 
+        "Logan Bittner <info@loganbittner.com>"
+    ],
     "license": "MIT",
     "main": "lib/treeful.js",
     "scripts": {
