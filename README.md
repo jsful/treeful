@@ -12,14 +12,49 @@ It's a(nother) state manager! But let's not get overwhelmed. Treeful will simply
 npm install treeful
 ```
 
+## Why Treeful?
+
+1. **Less code** - One of the strongest merit. Minimal lines of code will be sufficient. No extra files needed.
+2. **Tree structure** - Your state can be nested, and subscribing to parent will automatically subscribe to its child nodes as well.
+3. **Efficient data transfer** - We don't pass around whole tree. Only the subscribed set will be passed for efficiency.
+4. **Pluggable into all frameworks** - You won't need any wrappers to use it in a framework. Keep your code as is.
+
 ### Example
+
+```js
+import Treeful from 'treeful';
+
+Treeful.addNode('count', 0); //Add node with id 'count' and value 0.
+let unsubscribeCount;
+
+const onClickInc = () => {
+	Treeful.setData('count', Treeful.getData('count') + 1); //Increment value in node 'count'.
+};
+
+const counterUpdated = (data) => {
+	document.getElementById('count').innerHTML = data; //Display data from callback function.
+};
+
+window.onload = () => {
+	document.getElementById('inc').onclick = onClickInc;
+	unsubscribeCount = Treeful.subscribe('count', counterUpdated); //Subscribe to node 'count' with a callback function
+};
+
+window.onunload = () => {
+	unsubscribeCount(); //Unsubscribe to node 'count'
+};
+```
+
+To run all all examples at http://localhost:3000:
+
 ```sh
 git clone https://github.com/justinjung04/treeful.git
 cd treeful
 npm install
 npm start
 ```
-The example will run at http://localhost:3000. For source codes, please refer to [example](example).
+
+For source codes, please refer to [example](example).
 
 ## Methods
 

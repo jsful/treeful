@@ -13,7 +13,6 @@
         "curly": [2, "all"],
         "strict": [2, "never"],
         "semi": [2, "always"],
-        "comma-dangle": [2, "never"],
         "no-unused-vars": [2, { "vars": "all", "args": "after-used" }],
         "no-redeclare": [2, { "builtinGlobals": true }],
         "brace-style": [2, "1tbs"],
