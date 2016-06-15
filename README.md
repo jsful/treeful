@@ -22,30 +22,41 @@ npm install treeful
 
 ### Example
 
+First, import the library and create your tree
+
 ```js
 import Treeful from 'treeful';
-
-Treeful.addNode('count', 0); //Add node with id 'count' and value 0.
-let unsubscribeCount;
-
-const onClickInc = () => {
-	Treeful.setData('count', Treeful.getData('count') + 1); //Increment value in node 'count'.
-};
-
-const counterUpdated = (data) => {
-	document.getElementById('count').innerHTML = data; //Display data from callback function.
-};
-
-window.onload = () => {
-	document.getElementById('inc').onclick = onClickInc;
-	unsubscribeCount = Treeful.subscribe('count', counterUpdated); //Subscribe to node 'count' with a callback function
-};
-
-window.onunload = () => {
-	unsubscribeCount(); //Unsubscribe to node 'count'
-};
+Treeful.addNode('count', 0); //Add node with id 'count' and value 0 (to root).
+Treeful.addNode('todos', []); //Add node with id 'todos' to root
+Treeful.addNode('filter', 'all', 'todos'); //Add Node with id of 'filter' to 'todos' with a value of 'all'
 ```
 
+Our tree now looks like this:
+![Tree](https://github.com/justinjung04/treeful/example.png)
+
+Subscribe to a node by calling:
+```js
+Treeful.subscribe('count', callbackFunction); //subscribe to the node 'count'. 
+    //callbackFunction will get called when the data in 'count' changes
+```
+
+Get and set data data by calling:
+```js
+let current = Treeful.getData('count');
+Treeful.setData('count', current + 1); //Increment the counter
+    //This will call the callback functions of anything subscribed to 'count'
+```
+
+callbackFunction is now called, and passed the new data
+```js
+//called because 'count' changed
+function callbackFunction(data, node) {
+    //data contains 1 (new data)
+    //node contains 'count' (node that changed)
+    //do some stuff
+}
+```
+---
 To run all all examples at http://localhost:3000:
 
 ```sh
