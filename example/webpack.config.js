@@ -18,7 +18,7 @@ module.exports = {
         'react-user': [
             'webpack-hot-middleware/client',
             './example/react-user/index.js'
-        ],
+        ]
     },
     output: {
         path: path.join(__dirname, 'example'),
