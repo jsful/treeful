@@ -1,7 +1,6 @@
 # Treeful
 
-### Simplify your questions!
-Let's not get overwhelmed. Treeful will simply do the following 4 things to your app.
+It's a(nother) state manager! But let's not get overwhelmed. Treeful will simply do the following 4 things to your app.
 
 1. Single global object that contains all states.
 2. Update the states.
@@ -53,6 +52,9 @@ Assigns a callback function to a node. The callback function is triggered when t
 
 ### destroy()
 Resets the tree.
+
+## Join the party!
+You are always more than wel
 
 ## License
 MIT - please refer to [LICENSE](LICENSE).
