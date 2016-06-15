@@ -3,7 +3,6 @@ import { Treeful } from './treeful';
 class TreefulDev extends Treeful {
 	constructor() {
 		super();
-		
 		const parentSetData = this.setData;
 
 		this.setData = (id, data) => {

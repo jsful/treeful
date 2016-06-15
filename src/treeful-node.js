@@ -36,8 +36,9 @@ export default class TreefulNode {
 
 		const callCallbacks = (data, id, self) => {
 			_callbacks.forEach((item) => {
-				if(!item.ignoreChildren || self)
+				if(!item.ignoreChildren || self) {
 					item.callback(data, id);
+				}
 			});
 		};
 	}
