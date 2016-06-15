@@ -25,24 +25,29 @@ npm install treeful
 ```js
 import Treeful from 'treeful';
 
-Treeful.addNode('count', 0); //Add node with id 'count' and value 0.
+//Add node with id 'count' and value 0.
+Treeful.addNode('count', 0);
 let unsubscribeCount;
 
 const onClickInc = () => {
-	Treeful.setData('count', Treeful.getData('count') + 1); //Increment value in node 'count'.
+    //Increment value in node 'count'.
+    Treeful.setData('count', Treeful.getData('count') + 1);
 };
 
 const counterUpdated = (data) => {
-	document.getElementById('count').innerHTML = data; //Display data from callback function.
+    //Display data from callback function.
+    document.getElementById('count').innerHTML = data;
 };
 
 window.onload = () => {
-	document.getElementById('inc').onclick = onClickInc;
-	unsubscribeCount = Treeful.subscribe('count', counterUpdated); //Subscribe to node 'count' with a callback function
+    document.getElementById('inc').onclick = onClickInc;
+    //Subscribe to node 'count' with a callback function
+    unsubscribeCount = Treeful.subscribe('count', counterUpdated);
 };
 
 window.onunload = () => {
-	unsubscribeCount(); //Unsubscribe to node 'count'
+    //Unsubscribe to node 'count'
+    unsubscribeCount();
 };
 ```
 

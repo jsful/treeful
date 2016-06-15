@@ -5,14 +5,14 @@ export default class TreefulNode {
 		let _callbacks = [];
 		let _children = {};
 		
-		this.addNode = node => {
+		this.addNode = (node) => {
 			const branch = {};
 			branch[node.getId()] = node;
 			_children = Object.assign(_children, branch);
 			node.subscribe(callCallbacks);
 		};
 
-		this.setData = data => {
+		this.setData = (data) => {
 			_data = data;
 			callCallbacks(_data, _id, true);
 		};
@@ -27,9 +27,9 @@ export default class TreefulNode {
 
 		this.subscribe = (callback, ignoreChildren = false) => {
 			_callbacks.push({callback, ignoreChildren});
-			return function(){
+			return () => {
 				unsubscribe(_callbacks.length - 1);
-			}.bind(this);
+			};
 		};
 
 		const unsubscribe = (index) => {

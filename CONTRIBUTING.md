@@ -26,6 +26,7 @@ Let's not branch the tree too much! Treeful must stay simple and straight-forwar
 - 1TBS brace style.
 - Semicolon at the end of each statement.
 - Object shorthand for ES6.
+- Parenthesis around arrow function argument.
 - Minimum line breaks.
 - No `use strict`.
 - No `alert`, `confirm` and `prompt`.
