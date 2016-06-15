@@ -4,7 +4,7 @@ import expect from 'expect';
 describe('treeful', () => {
 
 
-	it('exposes the public api without instanciating', () => {
+	it('exposes the public api', () => {
 		let methods = Object.keys(Treeful);
 		expect(methods).toContain('addNode')
 		expect(methods).toContain('setData')
