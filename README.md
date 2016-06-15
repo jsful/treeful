@@ -19,7 +19,7 @@ cd treeful
 npm install
 npm start
 ```
-The example will run at http://localhost:3000. For source codes, please refer to [example](./example).
+The example will run at http://localhost:3000. For source codes, please refer to [example](example).
 
 ## Methods
 
@@ -53,8 +53,8 @@ Assigns a callback function to a node. The callback function is triggered when t
 ### destroy()
 Resets the tree.
 
-## Join the party!
-You are always more than wel
+## Contribute
+Join the party - please refer to [CONTRIBUTING](CONTRIBUTING.md).
 
 ## License
 MIT - please refer to [LICENSE](LICENSE).
