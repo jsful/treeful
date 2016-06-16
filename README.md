@@ -26,8 +26,8 @@ First, import the library and create your tree
 
 ```js
 import Treeful from 'treeful';
-Treeful.addNode('count', 0); //Add node 'count' with value 0 (to root).
-Treeful.addNode('todos', [], 'root'); //Add node 'todos' to root.
+Treeful.addNode('count', 0); //Add node 'count' with value 0 (to 'root').
+Treeful.addNode('todos', [], 'root'); //Add node 'todos' to 'root'.
 Treeful.addNode('filter', 'all', 'todos'); //Add node 'filter' to 'todos' with value of 'all'.
 ```
 
