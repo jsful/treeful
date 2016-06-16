@@ -16,7 +16,7 @@ npm install treeful
 ## Why Treeful?
 
 1. **Less code** - One of the strongest merit. Minimal lines of code will be sufficient. No extra files needed.
-2. **Tree structure** - Your state can be nested, and subscribing to parent will automatically subscribe to its child nodes as well.
+2. **Tree structure** - Your state can be nested, and subscribing to parent will automatically subscribe to its child nodes.
 3. **Efficient data transfer** - We don't pass around whole tree. Only the subscribed set will be passed for efficiency.
 4. **Pluggable into all frameworks** - You won't need any wrappers to use it in a framework. Keep your code as is.
 
@@ -26,16 +26,16 @@ First, import the library and create your tree
 
 ```js
 import Treeful from 'treeful';
-Treeful.addNode('count', 0); //Add node 'count' with value 0 (to 'root').
-Treeful.addNode('todos', [], 'root'); //Add node 'todos' to 'root'.
-Treeful.addNode('filter', 'all', 'todos'); //Add node 'filter' to 'todos' with value of 'all'.
+Treeful.addNode('count', 0) //Add node 'count' with value 0 (to 'root').
+    .addNode('todos', [], 'root') //Add node 'todos' to 'root'.
+    .addNode('filter', 'all', 'todos'); //Add node 'filter' to 'todos' with value of 'all'.
 ```
 
 Our tree now looks like this:
 
 ![Tree](example/example.png)
 
-Subscribe to `'todos'` node by calling:
+Subscribe to node `'todos'` by calling:
 ```js
 Treeful.subscribe('todos', callbackTodos);
 //callbackTodos will get called when the data in 'todos' or 'filter' changes
