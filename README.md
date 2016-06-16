@@ -66,7 +66,7 @@ npm install
 npm start
 ```
 
-For source codes, please refer to [example](example).
+The examples will print the tree in console everytime it updates. For source codes, please refer to [example](example).
 
 ## Methods
 
