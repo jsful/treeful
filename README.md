@@ -26,16 +26,16 @@ First, import the library and create your tree
 
 ```js
 import Treeful from 'treeful';
-Treeful.addNode('count', 0); //Add node with id 'count' and value 0 (to root).
-Treeful.addNode('todos', []); //Add node with id 'todos' to root.
-Treeful.addNode('filter', 'all', 'todos'); //Add Node with id of 'filter' to 'todos' with a value of 'all'.
+Treeful.addNode('count', 0); //Add node 'count' with value 0 (to root).
+Treeful.addNode('todos', [], 'root'); //Add node 'todos' to root.
+Treeful.addNode('filter', 'all', 'todos'); //Add node 'filter' to 'todos' with value of 'all'.
 ```
 
 Our tree now looks like this:
 
 ![Tree](example/example.png)
 
-Subscribe to a node by calling:
+Subscribe to `'todos'` node by calling:
 ```js
 Treeful.subscribe('todos', callbackTodos);
 //callbackTodos will get called when the data in 'todos' or 'filter' changes
@@ -43,7 +43,7 @@ Treeful.subscribe('todos', callbackTodos);
 
 Get and set data data by calling:
 ```js
-let oldFilter = Treeful.getData('filter');
+let oldFilter = Treeful.getData('filter'); //oldFilter = 'all'
 let newFilter = 'completed';
 Treeful.setData('filter', newFilter);
 //Node 'filter' is updated, and it is a child of 'todos' that is subscribed to callbackTodos.
@@ -58,7 +58,7 @@ function callbackTodos(data, node) {
 }
 ```
 
-To run all all examples at http://localhost:3000:
+To run all examples at http://localhost:3000:
 
 ```sh
 git clone https://github.com/justinjung04/treeful.git
