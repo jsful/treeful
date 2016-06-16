@@ -41,11 +41,10 @@ Treeful.subscribe('todos', callbackTodos);
 //callbackTodos will get called when the data in 'todos' or 'filter' changes
 ```
 
-Get and set data data by calling:
+Get and set data by calling:
 ```js
-let oldFilter = Treeful.getData('filter'); //oldFilter = 'all'
-let newFilter = 'completed';
-Treeful.setData('filter', newFilter);
+let oldData = Treeful.getData('filter'); //oldData = 'all'
+Treeful.setData('filter', 'completed');
 //Node 'filter' is updated, and it is a child of 'todos' that is subscribed to callbackTodos.
 ```
 
