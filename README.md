@@ -27,37 +27,37 @@ First, import the library and create your tree
 ```js
 import Treeful from 'treeful';
 Treeful.addNode('count', 0); //Add node with id 'count' and value 0 (to root).
-Treeful.addNode('todos', []); //Add node with id 'todos' to root
-Treeful.addNode('filter', 'all', 'todos'); //Add Node with id of 'filter' to 'todos' with a value of 'all'
+Treeful.addNode('todos', []); //Add node with id 'todos' to root.
+Treeful.addNode('filter', 'all', 'todos'); //Add Node with id of 'filter' to 'todos' with a value of 'all'.
 ```
 
 Our tree now looks like this:
 
-![Tree](https://github.com/justinjung04/treeful/blob/develop/example.png)
+![Tree](example/example.png)
 
 Subscribe to a node by calling:
 ```js
-Treeful.subscribe('count', callbackFunction); //subscribe to the node 'count'. 
-    //callbackFunction will get called when the data in 'count' changes
+Treeful.subscribe('todos', callbackTodos);
+//callbackTodos will get called when the data in 'todos' or 'filter' changes
 ```
 
 Get and set data data by calling:
 ```js
-let current = Treeful.getData('count');
-Treeful.setData('count', current + 1); //Increment the counter
-    //This will call the callback functions of anything subscribed to 'count'
+let oldFilter = Treeful.getData('filter');
+let newFilter = 'completed';
+Treeful.setData('filter', newFilter);
+//Node 'filter' is updated, and it is a child of 'todos' that is subscribed to callbackTodos.
 ```
 
-callbackFunction is now called, and passed the new data
+callbackTodos is now called, and passed the new data
 ```js
-//called because 'count' changed
-function callbackFunction(data, node) {
-    //data contains 1 (new data)
-    //node contains 'count' (node that changed)
+function callbackTodos(data, node) {
+    //data = 'completed'
+    //node = 'filter' (node that changed)
     //do some stuff
 }
 ```
----
+
 To run all all examples at http://localhost:3000:
 
 ```sh
