@@ -16,7 +16,7 @@
     "lint": "npm run lint:src && npm run lint:example && npm run lint:test",
     "test": "npm run lint:test && mocha --compilers js:babel-core/register",
     "compile": "babel -d lib/ src/",
-    "prepublish": "npm run lint:src && npm run compile"
+    "prepublish": "npm run lint:src && npm run test && npm run compile"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
