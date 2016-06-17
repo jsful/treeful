@@ -6,7 +6,7 @@ export default class Profile extends Component {
 		super();
 		this.state = {
 			username: Treeful.getData('username'),
-			loggedin: Treeful.getData('login')
+			isLoggedIn: Treeful.getData('login')
 		};
 	}
 
@@ -21,7 +21,7 @@ export default class Profile extends Component {
 	userChanged(data, node) {
 		switch(node) {
 			case 'login':
-				this.setState({ loggedin: data });
+				this.setState({ isLoggedIn: data });
 				break;
 			case 'username':
 				this.setState({ username: data });
@@ -35,7 +35,7 @@ export default class Profile extends Component {
 				<h2>User Profile</h2>
 				<p>Username: <b>{this.state.username}</b></p>
 				<br />	
-				<p>{this.state.loggedin ? 'Logged in' : 'Not Logged In'}</p>
+				<p>{this.state.isLoggedIn ? 'Logged in' : 'Not Logged In'}</p>
 			</div>
 		);
 	}

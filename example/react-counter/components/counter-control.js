@@ -13,8 +13,8 @@ export default class CounterControl extends Component {
 	render() {
 		return (
 			<div>
-				<button onClick={this.increment.bind(this)}>Increment</button>
-				<button onClick={this.decrement.bind(this)}>Decrement</button>
+				<button onClick={this.increment}>Increment</button>
+				<button onClick={this.decrement}>Decrement</button>
 			</div>
 		);
 	}

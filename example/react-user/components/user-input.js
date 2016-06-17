@@ -36,7 +36,7 @@ export default class UserInput extends Component {
 				<p>Username: </p> <input type='text' ref='username' defaultValue={Treeful.getData('username')}  />
 				<button onClick={this.updateUsername.bind(this)}>UPDATE</button>
 				<br />
-				<button onClick={this.toggleLogin.bind(this)}>{this.state.isLoggedIn ? 'Logout' : 'Login'}</button>
+				<button onClick={this.toggleLogin}>{this.state.isLoggedIn ? 'Logout' : 'Login'}</button>
 			</div>
 		);
 	}
