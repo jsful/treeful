@@ -1,7 +1,7 @@
-example
+example/
 lib/treeful-dev.js
-src
-test
+src/
+test/
 .babelrc
 .eslintrc
 .travis.yml
