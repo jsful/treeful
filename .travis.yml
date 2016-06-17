@@ -6,5 +6,10 @@ node_js:
   - "4.2"
   - "4.1"
   - "4.0"
+branches:
+  only:
+    - master
 after_success:
 - npm run coveralls
+notifications:
+  email: false
