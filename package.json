@@ -57,6 +57,7 @@
     "react",
     "redux",
     "flux",
+    "simple",
     "easy",
     "tree"
   ],
