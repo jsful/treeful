@@ -51,7 +51,7 @@ Treeful.setData('filter', 'completed');
 callbackTodos is now called, and passed the new data
 ```js
 function callbackTodos(data, node) {
-    //data = 'completed'
+    //data = 'completed' (updated data)
     //node = 'filter' (node that changed)
     //do some stuff
 }
