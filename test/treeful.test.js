@@ -151,19 +151,19 @@ describe('treeful', () => {
 
 		Treeful.addNode('test', 0);
 		let unsub1 = Treeful.subscribe('test', cb1);
-		let unsub2 = Treeful.subscribe('test', cb2);
+		Treeful.subscribe('test', cb2);
 		unsub1();
 		Treeful.setData('test', 50);
 		expect(Treeful.getCallbacks('test').length).toBe(2);
 		expect(callbackData1).toBe(0);
 		expect(callbackData2).toBe(50);
 
-		Treeful.subscribe('test', cb1);
-		unsub2();
+		unsub1 = Treeful.subscribe('test', cb1);
+		unsub1();
 		Treeful.setData('test', 10);
 		expect(Treeful.getCallbacks('test').length).toBe(2);
-		expect(callbackData1).toBe(10);
-		expect(callbackData2).toBe(50);
+		expect(callbackData1).toBe(0);
+		expect(callbackData2).toBe(10);
 		Treeful.destroy();
 	});
 
