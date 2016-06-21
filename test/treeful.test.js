@@ -139,6 +139,34 @@ describe('treeful', () => {
 		Treeful.destroy();
 	});
 
+	it('unsubscribes only the specified callback function from the node', () => {
+		let callbackData1 = 0;
+		let callbackData2 = 0;
+		let cb1 = (data) => {
+			callbackData1 = data;
+		};
+		let cb2 = (data) => {
+			callbackData2 = data;
+		};
+
+		Treeful.addNode('test', 0);
+		let unsub1 = Treeful.subscribe('test', cb1);
+		let unsub2 = Treeful.subscribe('test', cb2);
+		unsub1();
+		Treeful.setData('test', 50);
+		expect(Treeful.getCallbacks('test').length).toBe(2);
+		expect(callbackData1).toBe(0);
+		expect(callbackData2).toBe(50);
+
+		Treeful.subscribe('test', cb1);
+		unsub2();
+		Treeful.setData('test', 10);
+		expect(Treeful.getCallbacks('test').length).toBe(2);
+		expect(callbackData1).toBe(10);
+		expect(callbackData2).toBe(50);
+		Treeful.destroy();
+	});
+
 	it('calls callback when a child node is updated', () => {
 		var callbackData = 0;
 		let cb = (data) => {

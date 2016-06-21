@@ -18,7 +18,7 @@ npm install treeful
 1. **Less code** - One of the strongest merit. Minimal lines of code will be sufficient. No extra files needed.
 2. **Tree structure** - Your state can be nested, and subscribing to parent will automatically subscribe to its child nodes.
 3. **Efficient data transfer** - We don't pass around whole tree. Only the subscribed set will be passed for efficiency.
-4. **Pluggable into all frameworks** - You don't need any wrappers to use it in a framework. Keep your code as is.
+4. **Framework independent** - You don't need any wrappers to use it in a framework. Keep your code as is.
 
 ### Example
 
