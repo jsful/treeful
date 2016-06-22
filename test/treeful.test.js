@@ -240,4 +240,21 @@ describe('treeful', () => {
 		}).toThrow();
 		Treeful.destroy();
 	});
+
+	it('toogles boolean when toggleData is called', () => {
+		Treeful.addNode('test', true);
+		Treeful.toggleData('test');
+		expect(Treeful.getData('test'), false);
+		Treeful.toggleData('test');
+		expect(Treeful.getData('test'), true);
+		Treeful.destroy();
+	});
+
+	it('throws if toggleData is called on a node that does not have data type of boolean', () => {
+		Treeful.addNode('test', 'some string');
+		expect(() => {
+			Treeful.toggleData('test');
+		}).toThrow();
+		Treeful.destroy();
+	});
 });
