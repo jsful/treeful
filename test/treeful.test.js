@@ -212,4 +212,32 @@ describe('treeful', () => {
 		}).toNotThrow();
 		Treeful.destroy();
 	});
+
+	it('increments/decrements number when incrementData/decrementData is called', () => {
+		Treeful.addNode('test', 0);
+		Treeful.incrementData('test');
+		expect(Treeful.getData('test'), 1);
+		Treeful.incrementData('test', 2);
+		expect(Treeful.getData('test'), 3);
+		Treeful.decrementData('test');
+		expect(Treeful.getData('test'), 2);
+		Treeful.decrementData('test', 2);
+		expect(Treeful.getData('test'), 0);
+		Treeful.destroy();
+	});
+
+	it('throws if incrementData/decrementData is called on a node that does not have data type of number', () => {
+		Treeful.addNode('test1', 'some string');
+		Treeful.addNode('test2');
+		expect(() => {
+			Treeful.incrementData('test1');
+		}).toThrow();
+		expect(() => {
+			Treeful.decrementData('test1');
+		}).toThrow();
+		expect(() => {
+			Treeful.incrementData('test2');
+		}).toThrow();
+		Treeful.destroy();
+	});
 });
