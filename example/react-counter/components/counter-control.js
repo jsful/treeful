@@ -3,11 +3,15 @@ import Treeful from '../../../src/treeful-dev';
 
 export default class CounterControl extends Component {
 	increment() {
-		Treeful.setData('counter', Treeful.getData('counter') + 1);
+		Treeful.setData('count', Treeful.getData('count') + 1);
+		// Or you may use a helper function
+		// Treeful.incrementData('count');
 	}
 
 	decrement() {
-		Treeful.setData('counter', Treeful.getData('counter') - 1);
+		Treeful.setData('count', Treeful.getData('count') - 1);
+		// Or you may use a helper function
+		// Treeful.decrementData('count');
 	}
 
 	render() {

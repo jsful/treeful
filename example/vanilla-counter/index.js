@@ -5,10 +5,14 @@ let unsubscribe;
 
 const onClickInc = () => {
 	Treeful.setData('count', Treeful.getData('count') + 1);
+	// Or you may use a helper function
+	// Treeful.incrementData('count');
 };
 
 const onClickDec = () => {
 	Treeful.setData('count', Treeful.getData('count') - 1);
+	// Or you may use a helper function
+	// Treeful.decrementData('count');
 };
 
 const counterUpdated = (data) => {

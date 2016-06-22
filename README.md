@@ -68,7 +68,7 @@ npm start
 
 The examples will print the tree in console everytime it updates. For source codes, please refer to [example](example).
 
-## Methods
+## Core Methods
 
 ### addNode(id, [data, parent])
 Add a node to Treeful object.
@@ -99,6 +99,18 @@ Assigns a callback function to a node. The callback function is triggered when t
 
 ### destroy()
 Resets the tree.
+
+## Helper Methods
+
+### incrementData(id, [value])
+Increments data in a node.
+* `id` (string) - string id of a node. The node must contain data type of number.
+* `value` (number, optional) - value to be incremented by. Default is `1`.
+
+### decrementData(id, [value])
+Decrements data in a node.
+* `id` (string) - string id of a node. The node must contain data type of number.
+* `value` (number, optional) - value to be decremented by. Default is `1`.
 
 ## Contribute
 Join the party - please refer to [CONTRIBUTING](CONTRIBUTING.md).
