@@ -12,6 +12,14 @@ export default class TodoController extends Component {
 		});
 
 		Treeful.setData('todos', data);
+
+		// Or you may use a helper function
+
+		// Treeful.pushData('todos', {
+		// 	name: this.refs.name.value,
+		// 	color: this.refs.color.value,
+		// 	id: Treeful.getData('todos').length + 1
+		// });
 	}
 
 	render() {

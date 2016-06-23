@@ -62,44 +62,44 @@ export class Treeful {
 		this.incrementData = (id, value = 1) => {
 			checkIdType(id);
 			checkIdExists(id);
-			const data = this.getData(id);
-			checkDataType(data, 'number');
-			this.setData(id, data + value);
+			const number = this.getData(id);
+			checkDataType(number, 'number');
+			this.setData(id, number + value);
 		};
 
 		this.decrementData = (id, value = 1) => {
 			checkIdType(id);
 			checkIdExists(id);
-			const data = this.getData(id);
-			checkDataType(data, 'number');
-			this.setData(id, data - value);
+			const number = this.getData(id);
+			checkDataType(number, 'number');
+			this.setData(id, number - value);
 		};
 
 		this.toggleData = (id) => {
 			checkIdType(id);
 			checkIdExists(id);
-			const data = this.getData(id);
-			checkDataType(data, 'boolean');
-			this.setData(id, !data);
+			const boolean = this.getData(id);
+			checkDataType(boolean, 'boolean');
+			this.setData(id, !boolean);
 		};
 
-		this.pushData = (id, item) => {
+		this.pushData = (id, data) => {
 			checkIdType(id);
 			checkIdExists(id);
-			const data = this.getData(id);
-			checkDataType(data, 'array');
-			data.push(item);
-			this.setData(id, data);
+			const array = this.getData(id);
+			checkDataType(array, 'array');
+			array.push(data);
+			this.setData(id, array);
 		};
 
 		this.popData = (id) => {
 			checkIdType(id);
 			checkIdExists(id);
-			const data = this.getData(id);
-			checkDataType(data, 'array');
-			const removedArray = data.splice(data.length - 1, 1);
-			this.setData(id, data);
-			return removedArray[0];
+			const array = this.getData(id);
+			checkDataType(array, 'array');
+			const subArray = array.splice(array.length - 1, 1);
+			this.setData(id, array);
+			return subArray[0];
 		};
 
 		const init = () => {

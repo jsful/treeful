@@ -116,6 +116,15 @@ Decrements data in a node.
 Toggles data in a node.
 * `id` (string) - string id of a node. The node must contain data type of `boolean`.
 
+### pushData(id, data)
+Pushes data to last index into an array at a node.
+* `id` (string) - string id of a node. The node must contain data type of `array`.
+* `data` (anything) - data to be pushed to the array.
+
+### popData(id)
+Pops data of last index from an array at a node.
+* `id` (string) - string id of a node. The node must contain data type of `array`.
+
 ## Contribute
 Join the party - please refer to [CONTRIBUTING](CONTRIBUTING.md).
 
