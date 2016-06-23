@@ -104,13 +104,17 @@ Resets the tree.
 
 ### incrementData(id, [value])
 Increments data in a node.
-* `id` (string) - string id of a node. The node must contain data type of number.
+* `id` (string) - string id of a node. The node must contain data type of `number`.
 * `value` (number, optional) - value to be incremented by. Default is `1`.
 
 ### decrementData(id, [value])
 Decrements data in a node.
-* `id` (string) - string id of a node. The node must contain data type of number.
+* `id` (string) - string id of a node. The node must contain data type of `number`.
 * `value` (number, optional) - value to be decremented by. Default is `1`.
+
+### toggleData(id)
+Toggles data in a node.
+* `id` (string) - string id of a node. The node must contain data type of `boolean`.
 
 ## Contribute
 Join the party - please refer to [CONTRIBUTING](CONTRIBUTING.md).

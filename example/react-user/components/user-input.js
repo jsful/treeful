@@ -23,6 +23,8 @@ export default class UserInput extends Component {
 
 	toggleLogin() {
 		Treeful.setData('login', !Treeful.getData('login'));
+		// Or you may use a helper function
+		// Treeful.toggleData('login');
 	}
 
 	updateLogin(isLoggedIn) {
