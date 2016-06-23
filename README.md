@@ -78,16 +78,16 @@ Add a node to Treeful object.
 
 **Returns** Treeful object. Allows addNode to be called in a chain.
 
-### setData(id, data)
-Sets data in a node.
-* `id` (string) - string id of a node.
-* `data` (same as existing data type) - data to be set in the node. Data type CANNOT be modified.
-
 ### getData(id)
 Gets data in a node.
 * `id` (string) - string id of a node.
 
 **Returns** Data in the node
+
+### setData(id, data)
+Sets data in a node.
+* `id` (string) - string id of a node.
+* `data` (same as existing data type) - data to be set in the node. Data type CANNOT be modified.
 
 ### subscribe(id, callback, [ignoreChildren])
 Assigns a callback function to a node. The callback function is triggered when the node or its child nodes get updated.

@@ -13,7 +13,7 @@ export class Treeful {
 		this.addNode = (id, data = null, parent = 'root') => {
 			checkIdType(id);
 			checkDuplicate(id);
-			checkDataType(data);
+			checkIfDataIsFunction(data);
 			checkIdExists(parent);
 
 			const node = new TreefulNode(id, data);
@@ -25,20 +25,20 @@ export class Treeful {
 			return this;
 		};
 
-		this.setData = (id, data) => {
-			checkIdType(id);
-			checkIdExists(id);
-			checkDataType(data);
-			checkTypeMutation(id, data);
-
-			_tree[id].setData(data);
-		};
-
 		this.getData = (id) => {
 			checkIdType(id);
 			checkIdExists(id);
 
 			return _tree[id].getData();
+		};
+
+		this.setData = (id, data) => {
+			checkIdType(id);
+			checkIdExists(id);
+			checkIfDataIsFunction(data);
+			checkTypeMutation(id, data);
+
+			_tree[id].setData(data);
 		};
 
 		this.subscribe = (id, callback, ignoreChildren = false) => {
@@ -62,31 +62,44 @@ export class Treeful {
 		this.incrementData = (id, value = 1) => {
 			checkIdType(id);
 			checkIdExists(id);
-			const currentData = this.getData(id);
-			if(!isType(currentData, 'number')) {
-				throw new TypeError('Data type in node ' + id + ' is not a number.');
-			}
-			this.setData(id, currentData + value);
+			const data = this.getData(id);
+			checkDataType(data, 'number');
+			this.setData(id, data + value);
 		};
 
 		this.decrementData = (id, value = 1) => {
 			checkIdType(id);
 			checkIdExists(id);
-			const currentData = this.getData(id);
-			if(!isType(currentData, 'number')) {
-				throw new TypeError('Data type in node ' + id + ' is not a number.');
-			}
-			this.setData(id, currentData - value);
+			const data = this.getData(id);
+			checkDataType(data, 'number');
+			this.setData(id, data - value);
 		};
 
 		this.toggleData = (id) => {
 			checkIdType(id);
 			checkIdExists(id);
-			const currentData = this.getData(id);
-			if(!isType(currentData, 'boolean')) {
-				throw new TypeError('Data type in node ' + id + ' is not a boolean.');
-			}
-			this.setData(id, !currentData);
+			const data = this.getData(id);
+			checkDataType(data, 'boolean');
+			this.setData(id, !data);
+		};
+
+		this.pushData = (id, item) => {
+			checkIdType(id);
+			checkIdExists(id);
+			const data = this.getData(id);
+			checkDataType(data, 'array');
+			data.push(item);
+			this.setData(id, data);
+		};
+
+		this.popData = (id) => {
+			checkIdType(id);
+			checkIdExists(id);
+			const data = this.getData(id);
+			checkDataType(data, 'array');
+			const removedArray = data.splice(data.length - 1, 1);
+			this.setData(id, data);
+			return removedArray[0];
 		};
 
 		const init = () => {
@@ -112,9 +125,15 @@ export class Treeful {
 			}
 		};
 
-		const checkDataType = (data) => {
+		const checkIfDataIsFunction = (data) => {
 			if(isType(data, 'function')) {
 				throw new TypeError('Data cannot be a function.');
+			}
+		};
+
+		const checkDataType = (data, type) => {
+			if(!isType(data, type)) {
+				throw new TypeError('Data type must be a(n) ' + type + '.');
 			}
 		};
 
