@@ -59,7 +59,7 @@ export class Treeful {
 
 		this.getCallbacks = (id) => _tree[id].getCallbacks();
 
-		this.incrementData = (id, value = 1)  => {
+		this.incrementData = (id, value = 1) => {
 			const currentData = this.getData(id);
 			if(!isType(currentData, 'number')) {
 				throw new TypeError('Data type in node ' + id + ' is not a number.');
@@ -67,7 +67,7 @@ export class Treeful {
 			this.setData(id, currentData + value);
 		};
 
-		this.decrementData = (id, value = 1)  => {
+		this.decrementData = (id, value = 1) => {
 			const currentData = this.getData(id);
 			if(!isType(currentData, 'number')) {
 				throw new TypeError('Data type in node ' + id + ' is not a number.');
@@ -75,13 +75,13 @@ export class Treeful {
 			this.setData(id, currentData - value);
 		};
 
-		this.toggleData = (id, value = 1) => {
+		this.toggleData = (id) => {
 			const currentData = this.getData(id);
 			if(!isType(currentData, 'boolean')) {
 				throw new TypeError('Data type in node ' + id + ' is not a boolean.');
 			}
 			this.setData(id, !currentData);
-		}
+		};
 
 		const init = () => {
 			_tree = {};
