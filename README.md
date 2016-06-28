@@ -1,5 +1,5 @@
 # Treeful
-[![npm version][npm-img]][npm-url] [![monthly download][download-img]][download-url] [![build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url]
+[![npm version][npm-img]][npm-url] [![monthly downloads][downloads-img]][downloads-url] [![build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url]
 
 It's a(nother) state manager! But let's not get overwhelmed. Treeful will simply do the following 4 things to your app.
 
