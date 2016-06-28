@@ -97,9 +97,9 @@ export class Treeful {
 			checkIdExists(id);
 			const array = this.getData(id);
 			checkDataType(array, 'array');
-			const subArray = array.splice(array.length - 1, 1);
+			const popArray = array.splice(array.length - 1, 1);
 			this.setData(id, array);
-			return subArray[0];
+			return popArray[0];
 		};
 
 		const init = () => {
