@@ -41,19 +41,19 @@ export class Treeful {
 			_tree[id].setData(data);
 		};
 
+		this.shake = (id) => {
+			checkIdType(id);
+			checkIdExists(id);
+
+			_tree[id].setData(_tree[id].getData());
+		};
+
 		this.subscribe = (id, callback, ignoreChildren = false) => {
 			checkIdType(id);
 			checkIdExists(id);
 			checkCallbackType(callback);
 
 			return _tree[id].subscribe(callback, ignoreChildren);
-		};
-
-		this.trigger = (id) => {
-			checkIdType(id);
-			checkIdExists(id);
-
-			_tree[id].trigger();
 		};
 
 		this.destroy = () => {

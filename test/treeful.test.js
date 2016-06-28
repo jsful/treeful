@@ -196,22 +196,22 @@ describe('treeful', () => {
 		Treeful.destroy();
 	});
 
-	/** trigger **/
+	/** shake **/
 
-	it('triggers a node without changing data', () => {
+	it('shakes a node without changing data', () => {
 		let d1 = 0;
 		const cb1 = () => {
 			d1 = 10;
 		};
 		Treeful.addNode('1', 20);
 		Treeful.subscribe('1', cb1);
-		Treeful.trigger('1');
+		Treeful.shake('1');
 		expect(d1).toEqual(10);
 		expect(Treeful.getData('1')).toEqual(20);
 		Treeful.destroy();
 	});
 
-	it('triggers parent node without changing data', () => {
+	it('shakes parent node without changing data', () => {
 		let d1 = 0;
 		const cb1 = () => {
 			d1 = 10;
@@ -220,7 +220,7 @@ describe('treeful', () => {
 		Treeful.addNode('2', 30, '1');
 		Treeful.addNode('3', 40, '2');
 		Treeful.subscribe('1', cb1);
-		Treeful.trigger('3');
+		Treeful.shake('3');
 		expect(d1).toEqual(10);
 		expect(Treeful.getData('3')).toEqual(40);
 		Treeful.destroy();

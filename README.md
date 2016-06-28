@@ -89,6 +89,10 @@ Sets data in a node.
 * `id` (string) - string id of a node.
 * `data` (same as existing data type) - data to be set in the node. Data type CANNOT be modified.
 
+### shake(id)
+Shakes a node to call all callback functions without changing node data.
+* `id` (string) - string id of a node.
+
 ### subscribe(id, callback, [ignoreChildren])
 Assigns a callback function to a node. The callback function is triggered when the node or its child nodes get updated.
 * `id` (string) - string id of a node.
