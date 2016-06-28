@@ -11,7 +11,13 @@ describe('treeful', () => {
 		expect(methods).toContain('setData');
 		expect(methods).toContain('getData');
 		expect(methods).toContain('subscribe');
+		expect(methods).toContain('shake');
 		expect(methods).toContain('destroy');
+		expect(methods).toContain('incrementData');
+		expect(methods).toContain('decrementData');
+		expect(methods).toContain('toggleData');
+		expect(methods).toContain('pushData');
+		expect(methods).toContain('popData');
 	});
 
 	it('creates the root node automatically', () => {
