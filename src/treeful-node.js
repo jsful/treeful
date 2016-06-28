@@ -19,7 +19,7 @@ export default class TreefulNode {
 		};
 
 		this.trigger = () => {
-			callCallbacks(_data, _id, true, true);
+			callCallbacks(null, null, true);
 		}
 
 		this.getId = () => _id;
@@ -30,7 +30,7 @@ export default class TreefulNode {
 
 		this.getCallbacks = () => _callbacks;
 
-		this.subscribe = (callback, ignoreChildren = false) => {
+		this.subscribe = (callback, ignoreChildren) => {
 			const hashId = _hashId;
 			_callbacks.push({hashId, callback, ignoreChildren});
 			_hashId++;
@@ -48,10 +48,10 @@ export default class TreefulNode {
 			}
 		};
 
-		const callCallbacks = (data, id, self = false, ignoreData = false) => {
+		const callCallbacks = (data, id, self = false) => {
 			_callbacks.forEach((item) => {
 				if(!item.ignoreChildren || self) {
-					if(!ignoreData) {
+					if(id) {
 						item.callback(data, id);
 					} else {
 						item.callback();

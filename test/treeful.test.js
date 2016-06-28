@@ -23,200 +23,213 @@ describe('treeful', () => {
 	/** addNode **/
 
 	it('adds a node to a parent node with data', () => {
-		Treeful.addNode('test');
-		Treeful.addNode('test1', 1, 'test');
-		const children = Object.keys(Treeful.getChildren('test'));
-		expect(children).toContain('test1');
-		expect(Treeful.getData('test1')).toEqual(1);
+		Treeful.addNode('1');
+		Treeful.addNode('2', 10, '1');
+		const children = Object.keys(Treeful.getChildren('1'));
+		expect(children).toContain('2');
+		expect(Treeful.getData('2')).toEqual(10);
 		Treeful.destroy();
 	});
 
 	it('allows chaining of addNode function', () => {
 		expect(() => {
-			Treeful.addNode('test').addNode('test2').addNode('test3', null, 'test');
+			Treeful.addNode('1').addNode('2').addNode('3', null, '1');
 		}).toNotThrow();
 		Treeful.destroy();
 	});
 
 	it('defaults to null if data is not passed to node', () => {
-		Treeful.addNode('test');
-		let data = Treeful.getData('test');
+		Treeful.addNode('1');
+		let data = Treeful.getData('1');
 		expect(data).toEqual(null);
 		Treeful.destroy();
 	});
 
 	it('adds a node to root if parent is not specified', () => {
-		Treeful.addNode('test');
+		Treeful.addNode('1');
 		let children = Object.keys(Treeful.getChildren('root'));
-		expect(children).toContain('test');
+		expect(children).toContain('1');
 		Treeful.destroy();
 	});
 
 	it('automatically creates a callback for every node', () => {
-		Treeful.addNode('test');
-		expect(Treeful.getCallbacks('test').length).toEqual(1);
+		Treeful.addNode('1');
+		expect(Treeful.getCallbacks('1').length).toEqual(1);
 		Treeful.destroy();
 	});
 
 	/** getData **/
 
 	it('gets data from a node', () => {
-		Treeful.addNode('test', 1);
-		expect(Treeful.getData('test')).toEqual(1);
+		Treeful.addNode('1', 10);
+		expect(Treeful.getData('1')).toEqual(10);
 		Treeful.destroy();
 	});
 
 	/** setData **/
 
 	it('sets data of a node', () => {
-		Treeful.addNode('test');
-		expect(Treeful.getData('test')).toEqual(null);
-		Treeful.setData('test', 1);
-		expect(Treeful.getData('test')).toEqual(1);
+		Treeful.addNode('1');
+		expect(Treeful.getData('1')).toEqual(null);
+		Treeful.setData('1', 10);
+		expect(Treeful.getData('1')).toEqual(10);
 		Treeful.destroy();
 	});
 
 	/** subscribe **/
 
 	it('calls callback functions when a node\'s data is changed, and passes data', () => {
-		let callbackData = 0;
-		const cb = (data) => {
-			callbackData = data;
+		let d1 = 0;
+		const cb1 = (data) => {
+			d1 = data;
 		};
-		Treeful.addNode('test');
-		Treeful.subscribe('test', cb);
-		Treeful.setData('test', 50);
-		expect(callbackData).toEqual(50);
+		Treeful.addNode('1');
+		Treeful.subscribe('1', cb1);
+		Treeful.setData('1', 10);
+		expect(d1).toEqual(10);
 		Treeful.destroy();
 	});
 
 	it('tells you which node was updated when callback is called', () => {
-		let callbackNode = '';
-		const cb = (data, node) => {
-			callbackNode = node;
+		let n1 = '';
+		const cb1 = (data, node) => {
+			n1 = node;
 		};
-		Treeful.addNode('test');
-		Treeful.addNode('child', 0, 'test');
-		Treeful.subscribe('test', cb);
-		Treeful.setData('child', 50);
-		expect(callbackNode).toEqual('child');
+		Treeful.addNode('1');
+		Treeful.addNode('2', 10, '1');
+		Treeful.subscribe('1', cb1);
+		Treeful.setData('2', 20);
+		expect(n1).toEqual('2');
 		Treeful.destroy();
 	});
 
 	it('allows multiple subscriptions on a single node', () => {
-		Treeful.addNode('test', 50);
-		Treeful.subscribe('test', () => {
-			console.log('sub1');
+		Treeful.addNode('1', 10);
+		Treeful.subscribe('1', () => {
+			return true;
 		});
-		Treeful.subscribe('test', () => {
-			console.log('sub2');
+		Treeful.subscribe('1', () => {
+			return false;
 		});
-		let callbacks = Treeful.getCallbacks('test').length;
+		let callbacks = Treeful.getCallbacks('1').length;
 		expect(callbacks).toEqual(3);
 		Treeful.destroy();
 	});
 
 	it('calls callback when a child node is updated', () => {
-		let callbackData = 0;
-		const cb = (data) => {
-			callbackData = data;
+		let d1 = 0;
+		const cb1 = (data) => {
+			d1 = data;
 		};
-		Treeful.addNode('test');
-		Treeful.addNode('child', 0, 'test');
-		Treeful.subscribe('test', cb);
-		Treeful.setData('child', 50);
-		expect(callbackData).toEqual(50);
+		Treeful.addNode('1');
+		Treeful.addNode('2', 10, '1');
+		Treeful.subscribe('1', cb1);
+		Treeful.setData('2', 20);
+		expect(d1).toEqual(20);
 		Treeful.destroy();
 	});
 
-	it('ignores child callbacks if ignore flag is set', () => {
-		let callbackData = 0;
-		const cb = (data) => {
-			callbackData = data;
+	it('calls callback when a child of a child node is updated', () => {
+		let d1 = 0;
+		const cb1 = (data) => {
+			d1 = data;
 		};
-		Treeful.addNode('test');
-		Treeful.addNode('child', 0, 'test');
-		Treeful.subscribe('test', cb, true);
-		Treeful.setData('child', 50);
-		expect(callbackData).toEqual(0);
+		Treeful.addNode('1');
+		Treeful.addNode('2', 0, '1');
+		Treeful.addNode('3', 0, '2');
+		Treeful.subscribe('1', cb1);
+		Treeful.setData('3', 10);
+		expect(d1).toEqual(10);
+		Treeful.destroy();
+	});
+
+	it('ignores updates from child when ignore flag is set', () => {
+		let d1 = 0;
+		const cb1 = (data) => {
+			d1 = data;
+		};
+		Treeful.addNode('1');
+		Treeful.addNode('2', 10, '1');
+		Treeful.subscribe('1', cb1, true);
+		Treeful.setData('2', 20);
+		expect(d1).toEqual(0);
 		Treeful.destroy();
 	});
 
 	it('returns an unsubscribe function when you call subscribe', () => {
-		let callbackData = 0;
-		const cb = (data) => {
-			callbackData = data;
+		let d1 = 0;
+		const cb1 = (data) => {
+			d1 = data;
 		};
-		Treeful.addNode('test', 0);
-		const unsub = Treeful.subscribe('test', cb);
+		Treeful.addNode('1', 10);
+		const unsub = Treeful.subscribe('1', cb1);
 		unsub();
-		Treeful.setData('test', 50);
-		expect(Treeful.getCallbacks('test').length).toEqual(1);
-		expect(callbackData).toEqual(0);
+		Treeful.setData('1', 20);
+		expect(Treeful.getCallbacks('1').length).toEqual(1);
+		expect(d1).toEqual(0);
 		Treeful.destroy();
 	});
 
 	it('unsubscribes only the specified callback function from the node', () => {
-		let callbackData1 = 0;
-		let callbackData2 = 0;
+		let d1 = 0;
+		let d2 = 0;
 		const cb1 = (data) => {
-			callbackData1 = data;
+			d1 = data;
 		};
 		const cb2 = (data) => {
-			callbackData2 = data;
+			d2 = data;
 		};
-		Treeful.addNode('test', 0);
-		let unsub1 = Treeful.subscribe('test', cb1);
-		Treeful.subscribe('test', cb2);
+		Treeful.addNode('1', 10);
+		let unsub1 = Treeful.subscribe('1', cb1);
+		Treeful.subscribe('1', cb2);
 		unsub1();
-		Treeful.setData('test', 1);
-		expect(Treeful.getCallbacks('test').length).toEqual(2);
-		expect(callbackData1).toEqual(0);
-		expect(callbackData2).toEqual(1);
-		unsub1 = Treeful.subscribe('test', cb1);
+		Treeful.setData('1', 20);
+		expect(Treeful.getCallbacks('1').length).toEqual(2);
+		expect(d1).toEqual(0);
+		expect(d2).toEqual(20);
+		unsub1 = Treeful.subscribe('1', cb1);
 		unsub1();
-		Treeful.setData('test', 2);
-		expect(Treeful.getCallbacks('test').length).toEqual(2);
-		expect(callbackData1).toEqual(0);
-		expect(callbackData2).toEqual(2);
+		Treeful.setData('1', 30);
+		expect(Treeful.getCallbacks('1').length).toEqual(2);
+		expect(d1).toEqual(0);
+		expect(d2).toEqual(30);
 		Treeful.destroy();
 	});
 
 	/** trigger **/
 
 	it('triggers a node without changing data', () => {
-		let callbackData1 = 0;
-		// let callbackData2 = 0;
+		let d1 = 0;
 		const cb1 = () => {
-			// callbackData1 = data;
-			callbackData1 = 50;
+			d1 = 10;
 		};
-		// const cb2 = (data) => {
-		// 	callbackData2 = data;
-		// };
-		Treeful.addNode('test1', 10);
-		// Treeful.addNode('test2', 15, 'test1');
+		Treeful.addNode('1', 20);
+		Treeful.subscribe('1', cb1);
+		Treeful.trigger('1');
+		expect(d1).toEqual(10);
+		expect(Treeful.getData('1')).toEqual(20);
+		Treeful.destroy();
+	});
 
-		Treeful.subscribe('test1', cb1);
-		// Treeful.subscribe('test2', cb2);
-
-		Treeful.trigger('test1');
-
-		expect(callbackData1).toEqual(50);
-		expect(Treeful.getData('test1')).toEqual(10);
-		// expect(callbackData2).toEqual(0);
-
-		// Treeful.setData('test1', 10);
-		// Treeful.trigger('test2');
-		// expect(callbackData1).toEqual(undefined);
-		// expect(callbackData2).toEqual(undefined);
+	it('triggers parent node without changing data', () => {
+		let d1 = 0;
+		const cb1 = () => {
+			d1 = 10;
+		};
+		Treeful.addNode('1', 20);
+		Treeful.addNode('2', 30, '1');
+		Treeful.addNode('3', 40, '2');
+		Treeful.subscribe('1', cb1);
+		Treeful.trigger('3');
+		expect(d1).toEqual(10);
+		expect(Treeful.getData('3')).toEqual(40);
 		Treeful.destroy();
 	});
 
 	/** destroy **/
 
 	it('resets tree when destroy is called', () => {
-		Treeful.addNode('test');
+		Treeful.addNode('1');
 		Treeful.destroy();
 		let children = Object.keys(Treeful.getChildren('root'));
 		expect(children.length).toEqual(0);
@@ -225,9 +238,9 @@ describe('treeful', () => {
 	/** checkIdExists **/
 
 	it('throws if a node id doesn\'t exist', () => {
-		Treeful.addNode('test');
+		Treeful.addNode('1');
 		expect(() => {
-			Treeful.getData('node');
+			Treeful.getData('2');
 		}).toThrow();
 		Treeful.destroy();
 	});
@@ -245,8 +258,8 @@ describe('treeful', () => {
 
 	it('throws if a function is passed as data', () => {
 		expect(() => {
-			Treeful.addNode('test', () => {
-				console.log('');
+			Treeful.addNode('1', () => {
+				return false;
 			});
 		}).toThrow();
 		Treeful.destroy();
@@ -255,9 +268,9 @@ describe('treeful', () => {
 	/** checkDataType **/
 
 	it('throws if data type does not match an expected type', () => {
-		Treeful.addNode('test', true);
+		Treeful.addNode('1', true);
 		expect(() => {
-			Treeful.incrementData('test');
+			Treeful.incrementData('1');
 		}).toThrow();
 		Treeful.destroy();
 	});
@@ -265,9 +278,9 @@ describe('treeful', () => {
 	/** checkDuplicate **/
 
 	it('throws if id is a duplicate', () => {
-		Treeful.addNode('test');
+		Treeful.addNode('1');
 		expect(() => {
-			Treeful.addNode('test');
+			Treeful.addNode('1');
 		}).toThrow();
 		Treeful.destroy();
 	});
@@ -275,9 +288,9 @@ describe('treeful', () => {
 	/** checkCallbackType **/
 
 	it('throws if callback is not a function', () => {
-		Treeful.addNode('test');
+		Treeful.addNode('1');
 		expect(() => {
-			Treeful.subscribe('test', 1);
+			Treeful.subscribe('1', 10);
 		}).toThrow();
 		Treeful.destroy();
 	});
@@ -285,9 +298,9 @@ describe('treeful', () => {
 	/** checkTypeMutation **/
 
 	it('throws if data mutation is attempted', () => {
-		Treeful.addNode('test', 1);
+		Treeful.addNode('1', 10);
 		expect(() => {
-			Treeful.setData('test', 'string');
+			Treeful.setData('1', 'string');
 		}).toThrow();
 		Treeful.destroy();
 	});
@@ -295,39 +308,39 @@ describe('treeful', () => {
 	/** incrementData / decrementData **/
 
 	it('increments/decrements number when incrementData/decrementData is called', () => {
-		Treeful.addNode('test', 0);
-		Treeful.incrementData('test');
-		expect(Treeful.getData('test')).toEqual(1);
-		Treeful.incrementData('test', 2);
-		expect(Treeful.getData('test')).toEqual(3);
-		Treeful.decrementData('test');
-		expect(Treeful.getData('test')).toEqual(2);
-		Treeful.decrementData('test', 2);
-		expect(Treeful.getData('test')).toEqual(0);
+		Treeful.addNode('1', 0);
+		Treeful.incrementData('1');
+		expect(Treeful.getData('1')).toEqual(1);
+		Treeful.incrementData('1', 2);
+		expect(Treeful.getData('1')).toEqual(3);
+		Treeful.decrementData('1');
+		expect(Treeful.getData('1')).toEqual(2);
+		Treeful.decrementData('1', 2);
+		expect(Treeful.getData('1')).toEqual(0);
 		Treeful.destroy();
 	});
 
 	/** toggleData **/
 
 	it('toogles boolean when toggleData is called', () => {
-		Treeful.addNode('test', true);
-		Treeful.toggleData('test');
-		expect(Treeful.getData('test')).toEqual(false);
-		Treeful.toggleData('test');
-		expect(Treeful.getData('test')).toEqual(true);
+		Treeful.addNode('1', true);
+		Treeful.toggleData('1');
+		expect(Treeful.getData('1')).toEqual(false);
+		Treeful.toggleData('1');
+		expect(Treeful.getData('1')).toEqual(true);
 		Treeful.destroy();
 	});
 
 	/** pushData / popData **/
 
 	it('pushes/pops item to an array when pushData/popData is called', () => {
-		Treeful.addNode('test', []);
-		Treeful.pushData('test', 1);
-		Treeful.pushData('test', 2);
-		expect(Treeful.getData('test')[0]).toEqual(1);
-		expect(Treeful.getData('test')[1]).toEqual(2);
-		expect(Treeful.popData('test')).toEqual(2);
-		expect(Treeful.getData('test').length).toEqual(1);
+		Treeful.addNode('1', []);
+		Treeful.pushData('1', 10);
+		Treeful.pushData('1', 20);
+		expect(Treeful.getData('1')[0]).toEqual(10);
+		expect(Treeful.getData('1')[1]).toEqual(20);
+		expect(Treeful.popData('1')).toEqual(20);
+		expect(Treeful.getData('1').length).toEqual(1);
 		Treeful.destroy();
 	});
 });
