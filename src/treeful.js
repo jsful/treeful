@@ -49,6 +49,13 @@ export class Treeful {
 			return _tree[id].subscribe(callback, ignoreChildren);
 		};
 
+		this.trigger = (id) => {
+			checkIdType(id);
+			checkIdExists(id);
+
+			_tree[id].trigger();
+		};
+
 		this.destroy = () => {
 			init();
 		};
@@ -160,7 +167,7 @@ export class Treeful {
 		};
 
 		const isType = (e, type) => {
-			return {}.toString.call(e).toLowerCase().split(' ')[1].replace(']', '').indexOf(type) > -1;
+			return getType(e).indexOf(type) > -1;
 		};
 
 		init();

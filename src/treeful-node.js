@@ -18,6 +18,10 @@ export default class TreefulNode {
 			callCallbacks(_data, _id, true);
 		};
 
+		this.trigger = () => {
+			callCallbacks(_data, _id, true, true);
+		}
+
 		this.getId = () => _id;
 
 		this.getData = () => _data;
@@ -44,10 +48,14 @@ export default class TreefulNode {
 			}
 		};
 
-		const callCallbacks = (data, id, self) => {
+		const callCallbacks = (data, id, self = false, ignoreData = false) => {
 			_callbacks.forEach((item) => {
 				if(!item.ignoreChildren || self) {
-					item.callback(data, id);
+					if(!ignoreData) {
+						item.callback(data, id);
+					} else {
+						item.callback();
+					}
 				}
 			});
 		};

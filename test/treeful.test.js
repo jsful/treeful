@@ -182,6 +182,37 @@ describe('treeful', () => {
 		Treeful.destroy();
 	});
 
+	/** trigger **/
+
+	it('triggers a node without changing data', () => {
+		let callbackData1 = 0;
+		// let callbackData2 = 0;
+		const cb1 = () => {
+			// callbackData1 = data;
+			callbackData1 = 50;
+		};
+		// const cb2 = (data) => {
+		// 	callbackData2 = data;
+		// };
+		Treeful.addNode('test1', 10);
+		// Treeful.addNode('test2', 15, 'test1');
+
+		Treeful.subscribe('test1', cb1);
+		// Treeful.subscribe('test2', cb2);
+
+		Treeful.trigger('test1');
+
+		expect(callbackData1).toEqual(50);
+		expect(Treeful.getData('test1')).toEqual(10);
+		// expect(callbackData2).toEqual(0);
+
+		// Treeful.setData('test1', 10);
+		// Treeful.trigger('test2');
+		// expect(callbackData1).toEqual(undefined);
+		// expect(callbackData2).toEqual(undefined);
+		Treeful.destroy();
+	});
+
 	/** destroy **/
 
 	it('resets tree when destroy is called', () => {
