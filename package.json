@@ -61,10 +61,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/justinjung04/treeful.git"
+    "url": "git+https://github.com/jsful/treeful.git"
   },
-  "homepage": "https://github.com/justinjung04/treeful",
+  "homepage": "https://github.com/jsful/treeful",
   "bugs": {
-    "url": "https://github.com/justinjung04/treeful/issues"
+    "url": "https://github.com/jsful/treeful/issues"
   }
 }
