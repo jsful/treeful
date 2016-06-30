@@ -1,5 +1,6 @@
-import Treeful from '../../src/treeful-dev';
+import Treeful from '../../src/treeful';
 
+Treeful.enableDev();
 Treeful.addNode('count', 0);
 let unsubscribe;
 

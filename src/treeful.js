@@ -2,33 +2,30 @@ import TreefulNode from './treeful-node';
 
 let _treefulInstance = null;
 
-export class Treeful {
+class Treeful {
 	constructor() {
 		if(_treefulInstance) {
 			return _treefulInstance;
 		}
 		_treefulInstance = this;
-		let _tree;
+		let _tree, _dev;
 
 		this.addNode = (id, data = null, parent = 'root') => {
 			checkIdType(id);
 			checkDuplicate(id);
 			checkIfDataIsFunction(data);
 			checkIdExists(parent);
-
 			const node = new TreefulNode(id, data);
 			const branch = {};
 			branch[id] = node;
 			_tree = Object.assign(_tree, branch);
 			_tree[parent].addNode(node);
-
 			return this;
 		};
 
 		this.getData = (id) => {
 			checkIdType(id);
 			checkIdExists(id);
-
 			return _tree[id].getData();
 		};
 
@@ -37,14 +34,13 @@ export class Treeful {
 			checkIdExists(id);
 			checkIfDataIsFunction(data);
 			checkTypeMutation(id, data);
-
 			_tree[id].setData(data);
+			if(_dev) iteratePrint('root', 0, '', '', []);
 		};
 
 		this.shake = (id) => {
 			checkIdType(id);
 			checkIdExists(id);
-
 			_tree[id].setData(_tree[id].getData());
 		};
 
@@ -52,7 +48,6 @@ export class Treeful {
 			checkIdType(id);
 			checkIdExists(id);
 			checkCallbackType(callback);
-
 			return _tree[id].subscribe(callback, ignoreChildren);
 		};
 
@@ -109,8 +104,13 @@ export class Treeful {
 			return popArray[0];
 		};
 
+		this.enableDev = () => {
+			_dev = true;
+		};
+
 		const init = () => {
 			_tree = {};
+			_dev = false;
 			addRootNode();
 		};
 
@@ -120,55 +120,87 @@ export class Treeful {
 			_tree = Object.assign({}, branch);
 		};
 
-		const checkIdExists = (id) => {
-			if(Object.keys(_tree).indexOf(id) < 0) {
-				throw new Error('Node with id \'' + id + '\' is not found.');
+		const iteratePrint = (id, depth, outputString, prepand, stack) => {
+			outputString += prepand + printTabs(depth) + printPerType(id, _tree[id].getData(), depth);
+
+			Object.keys(_tree[id].getChildren()).forEach((childId) => {
+				stack.splice(0, 0, { id: childId, depth: depth + 1 });
+			});
+
+			if(stack.length > 0) {
+				const obj = stack.splice(0, 1)[0];
+				iteratePrint(obj.id, obj.depth, outputString, '\n\n', stack);
+			} else {
+				console.log(outputString);
 			}
+		};
+
+		const printObject = (obj, depth) => {
+			let outputString = '{\n';
+			Object.keys(obj).forEach((key) => {
+				outputString += printTabs(depth + 1) + printPerType(key, obj[key], depth + 1) + '\n';
+			});
+			outputString += printTabs(depth) + '}';
+			return outputString;
+		};
+
+		const printTabs = (depth) => {
+			let outputString = '';
+			for(let i=0; i<depth; i++) {
+				outputString += '\t';
+			}
+			return outputString;
+		};
+
+		const printPerType = (key, value, depth) => {
+			let outputString = '';
+			if(key != null) outputString += key + ': ';
+			if(isType(value, 'array')) {
+				outputString += '[';
+				for(let i=0; i<value.length; i++) {
+					outputString += '\n' + printTabs(depth + 1) + printPerType(null, value[i], depth + 1);
+					if(i < value.length - 1) outputString += ',';
+				}
+				outputString += '\n' + printTabs(depth) + ']';
+			} else if(isType(value, 'object')) {
+				outputString += printObject(value, depth);
+			} else {
+				outputString += value;
+			}
+			return outputString;
+		};
+
+		const checkIdExists = (id) => {
+			if(Object.keys(_tree).indexOf(id) < 0) throw new Error('Node with id \'' + id + '\' is not found.');
 		};
 
 		const checkIdType = (id) => {
-			if(!isType(id, 'string')) {
-				throw new TypeError('Id must be a string.');
-			}
+			if(!isType(id, 'string')) throw new TypeError('Id must be a string.');
 		};
 
 		const checkIfDataIsFunction = (data) => {
-			if(isType(data, 'function')) {
-				throw new TypeError('Data cannot be a function.');
-			}
+			if(isType(data, 'function')) throw new TypeError('Data cannot be a function.');
 		};
 
 		const checkDataType = (data, type) => {
-			if(!isType(data, type)) {
-				throw new TypeError('Data type must be a(n) ' + type + '.');
-			}
+			if(!isType(data, type)) throw new TypeError('Data type must be a(n) ' + type + '.');
 		};
 
 		const checkDuplicate = (id) => {
-			if(Object.keys(_tree).indexOf(id) > -1) {
-				throw new Error('Cannot use duplicate id \'' + id + '\'.');
-			}
+			if(Object.keys(_tree).indexOf(id) > -1) throw new Error('Cannot use duplicate id \'' + id + '\'.');
 		};
 
 		const checkCallbackType = (callback) => {
-			if(!isType(callback, 'function')) {
-				throw new TypeError('Callback must be a function.');
-			}
+			if(!isType(callback, 'function')) throw new TypeError('Callback must be a function.');
 		};
 
 		const checkTypeMutation = (id, data) => {
-			if(!isType(this.getData(id), null) && !isType(data, getType(this.getData(id)))) {
-				throw new Error('Data type cannot be mutated from ' + getType(this.getData(id)) + ' to ' + getType(data) + '.');
-			}
+			if(!isType(this.getData(id), null) && !isType(data, getType(this.getData(id)))) throw new Error('Data type cannot be mutated from ' + getType(this.getData(id)) + ' to ' + getType(data) + '.');
 		};
 
-		const getType = (e) => {
-			return {}.toString.call(e).toLowerCase().split(' ')[1].replace(']', '');
-		};
+		const getType = (e) => Object.prototype.toString.call(e).toLowerCase().split(' ')[1].replace(']', '');
 
-		const isType = (e, type) => {
-			return getType(e).indexOf(type) > -1;
-		};
+		const isType = (e, type) => getType(e).indexOf(type) > -1;
 
 		init();
 	}
