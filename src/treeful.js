@@ -8,7 +8,8 @@ class Treeful {
 			return _treefulInstance;
 		}
 		_treefulInstance = this;
-		let _tree, _dev;
+		let _tree;
+		let _dev;
 
 		this.addNode = (id, data = null, parent = 'root') => {
 			checkIdType(id);
@@ -35,7 +36,9 @@ class Treeful {
 			checkIfDataIsFunction(data);
 			checkTypeMutation(id, data);
 			_tree[id].setData(data);
-			if(_dev) iteratePrint('root', 0, '', '', []);
+			if(_dev) {
+				iteratePrint('root', 0, '', '', []);
+			}
 		};
 
 		this.shake = (id) => {
@@ -154,12 +157,16 @@ class Treeful {
 
 		const printPerType = (key, value, depth) => {
 			let outputString = '';
-			if(key != null) outputString += key + ': ';
+			if(key != null) {
+				outputString += key + ': ';
+			}
 			if(isType(value, 'array')) {
 				outputString += '[';
 				for(let i=0; i<value.length; i++) {
 					outputString += '\n' + printTabs(depth + 1) + printPerType(null, value[i], depth + 1);
-					if(i < value.length - 1) outputString += ',';
+					if(i < value.length - 1) {
+						outputString += ',';
+					}
 				}
 				outputString += '\n' + printTabs(depth) + ']';
 			} else if(isType(value, 'object')) {
@@ -171,31 +178,45 @@ class Treeful {
 		};
 
 		const checkIdExists = (id) => {
-			if(Object.keys(_tree).indexOf(id) < 0) throw new Error('Node with id \'' + id + '\' is not found.');
+			if(Object.keys(_tree).indexOf(id) < 0) {
+				throw new Error('Node with id \'' + id + '\' is not found.');
+			}
 		};
 
 		const checkIdType = (id) => {
-			if(!isType(id, 'string')) throw new TypeError('Id must be a string.');
+			if(!isType(id, 'string')) {
+				throw new TypeError('Id must be a string.');
+			}
 		};
 
 		const checkIfDataIsFunction = (data) => {
-			if(isType(data, 'function')) throw new TypeError('Data cannot be a function.');
+			if(isType(data, 'function')) {
+				throw new TypeError('Data cannot be a function.');
+			}
 		};
 
 		const checkDataType = (data, type) => {
-			if(!isType(data, type)) throw new TypeError('Data type must be a(n) ' + type + '.');
+			if(!isType(data, type)) {
+				throw new TypeError('Data type must be a(n) ' + type + '.');
+			}
 		};
 
 		const checkDuplicate = (id) => {
-			if(Object.keys(_tree).indexOf(id) > -1) throw new Error('Cannot use duplicate id \'' + id + '\'.');
+			if(Object.keys(_tree).indexOf(id) > -1) {
+				throw new Error('Cannot use duplicate id \'' + id + '\'.');
+			}
 		};
 
 		const checkCallbackType = (callback) => {
-			if(!isType(callback, 'function')) throw new TypeError('Callback must be a function.');
+			if(!isType(callback, 'function')) {
+				throw new TypeError('Callback must be a function.');
+			}
 		};
 
 		const checkTypeMutation = (id, data) => {
-			if(!isType(this.getData(id), null) && !isType(data, getType(this.getData(id)))) throw new Error('Data type cannot be mutated from ' + getType(this.getData(id)) + ' to ' + getType(data) + '.');
+			if(!isType(this.getData(id), null) && !isType(data, getType(this.getData(id)))) {
+				throw new Error('Data type cannot be mutated from ' + getType(this.getData(id)) + ' to ' + getType(data) + '.');
+			}
 		};
 
 		const getType = (e) => Object.prototype.toString.call(e).toLowerCase().split(' ')[1].replace(']', '');
