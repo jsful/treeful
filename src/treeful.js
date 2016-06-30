@@ -61,6 +61,10 @@ class Treeful {
 
 		this.getCallbacks = (id) => _tree[id].getCallbacks();
 
+		this.enableDev = () => {
+			_dev = true;
+		};
+
 		this.incrementData = (id, value = 1) => {
 			checkIdType(id);
 			checkIdExists(id);
@@ -102,10 +106,6 @@ class Treeful {
 			const popArray = array.splice(array.length - 1, 1);
 			this.setData(id, array);
 			return popArray[0];
-		};
-
-		this.enableDev = () => {
-			_dev = true;
 		};
 
 		const init = () => {

@@ -106,6 +106,9 @@ Resets the tree.
 
 ## Helper Methods
 
+### enableDev()
+Enables development tool. Currently, the development tool prints the tree in console log whenever setData is called.
+
 ### incrementData(id, [value])
 Increments data in a node.
 * `id` (string) - string id of a node. The node must contain data type of `number`.
