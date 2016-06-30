@@ -142,7 +142,7 @@ MIT - please refer to [LICENSE](LICENSE).
 [npm-img]: https://img.shields.io/npm/v/treeful.svg
 [downloads-url]: https://www.npmjs.org/package/treeful
 [downloads-img]: https://img.shields.io/npm/dm/treeful.svg
-[travis-url]: https://travis-ci.org/justinjung04/treeful?branch=master
-[travis-img]: https://travis-ci.org/justinjung04/treeful.svg?branch=master
-[coveralls-url]: https://coveralls.io/github/justinjung04/treeful?branch=master
-[coveralls-img]: https://coveralls.io/repos/github/justinjung04/treeful/badge.svg?branch=master
+[travis-url]: https://travis-ci.org/jsful/treeful?branch=master
+[travis-img]: https://travis-ci.org/jsful/treeful.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/jsful/treeful?branch=master
+[coveralls-img]: https://coveralls.io/repos/github/jsful/treeful/badge.svg?branch=master
