@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Treeful from '../../src/treeful-dev';
+import Treeful from '../../src/treeful';
 
 import './index.scss';
 import TodoController from './components/todo-controller';
@@ -9,6 +9,7 @@ import Todo from './components/todo';
 class App extends Component {
 	constructor () {
 		super();
+		Treeful.enableDev();
 		Treeful.addNode('todos', []);
 
 		this.state = {

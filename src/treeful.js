@@ -2,33 +2,31 @@ import TreefulNode from './treeful-node';
 
 let _treefulInstance = null;
 
-export class Treeful {
+class Treeful {
 	constructor() {
 		if(_treefulInstance) {
 			return _treefulInstance;
 		}
 		_treefulInstance = this;
 		let _tree;
+		let _dev;
 
 		this.addNode = (id, data = null, parent = 'root') => {
 			checkIdType(id);
 			checkDuplicate(id);
 			checkIfDataIsFunction(data);
 			checkIdExists(parent);
-
 			const node = new TreefulNode(id, data);
 			const branch = {};
 			branch[id] = node;
 			_tree = Object.assign(_tree, branch);
 			_tree[parent].addNode(node);
-
 			return this;
 		};
 
 		this.getData = (id) => {
 			checkIdType(id);
 			checkIdExists(id);
-
 			return _tree[id].getData();
 		};
 
@@ -37,15 +35,22 @@ export class Treeful {
 			checkIdExists(id);
 			checkIfDataIsFunction(data);
 			checkTypeMutation(id, data);
-
 			_tree[id].setData(data);
+			if(_dev) {
+				iteratePrint('root', 0, '', '', []);
+			}
+		};
+
+		this.shake = (id) => {
+			checkIdType(id);
+			checkIdExists(id);
+			_tree[id].setData(_tree[id].getData());
 		};
 
 		this.subscribe = (id, callback, ignoreChildren = false) => {
 			checkIdType(id);
 			checkIdExists(id);
 			checkCallbackType(callback);
-
 			return _tree[id].subscribe(callback, ignoreChildren);
 		};
 
@@ -58,6 +63,10 @@ export class Treeful {
 		this.getChildren = (id) => _tree[id].getChildren();
 
 		this.getCallbacks = (id) => _tree[id].getCallbacks();
+
+		this.enableDev = () => {
+			_dev = true;
+		};
 
 		this.incrementData = (id, value = 1) => {
 			checkIdType(id);
@@ -104,6 +113,7 @@ export class Treeful {
 
 		const init = () => {
 			_tree = {};
+			_dev = false;
 			addRootNode();
 		};
 
@@ -111,6 +121,60 @@ export class Treeful {
 			const branch = {};
 			branch['root'] = new TreefulNode('root');
 			_tree = Object.assign({}, branch);
+		};
+
+		const iteratePrint = (id, depth, outputString, prepand, stack) => {
+			outputString += prepand + printTabs(depth) + printPerType(id, _tree[id].getData(), depth);
+
+			Object.keys(_tree[id].getChildren()).forEach((childId) => {
+				stack.splice(0, 0, { id: childId, depth: depth + 1 });
+			});
+
+			if(stack.length > 0) {
+				const obj = stack.splice(0, 1)[0];
+				iteratePrint(obj.id, obj.depth, outputString, '\n\n', stack);
+			} else {
+				console.log(outputString);
+			}
+		};
+
+		const printObject = (obj, depth) => {
+			let outputString = '{\n';
+			Object.keys(obj).forEach((key) => {
+				outputString += printTabs(depth + 1) + printPerType(key, obj[key], depth + 1) + '\n';
+			});
+			outputString += printTabs(depth) + '}';
+			return outputString;
+		};
+
+		const printTabs = (depth) => {
+			let outputString = '';
+			for(let i=0; i<depth; i++) {
+				outputString += '\t';
+			}
+			return outputString;
+		};
+
+		const printPerType = (key, value, depth) => {
+			let outputString = '';
+			if(key != null) {
+				outputString += key + ': ';
+			}
+			if(isType(value, 'array')) {
+				outputString += '[';
+				for(let i=0; i<value.length; i++) {
+					outputString += '\n' + printTabs(depth + 1) + printPerType(null, value[i], depth + 1);
+					if(i < value.length - 1) {
+						outputString += ',';
+					}
+				}
+				outputString += '\n' + printTabs(depth) + ']';
+			} else if(isType(value, 'object')) {
+				outputString += printObject(value, depth);
+			} else {
+				outputString += value;
+			}
+			return outputString;
 		};
 
 		const checkIdExists = (id) => {
@@ -155,13 +219,9 @@ export class Treeful {
 			}
 		};
 
-		const getType = (e) => {
-			return {}.toString.call(e).toLowerCase().split(' ')[1].replace(']', '');
-		};
+		const getType = (e) => Object.prototype.toString.call(e).toLowerCase().split(' ')[1].replace(']', '');
 
-		const isType = (e, type) => {
-			return {}.toString.call(e).toLowerCase().split(' ')[1].replace(']', '').indexOf(type) > -1;
-		};
+		const isType = (e, type) => getType(e).indexOf(type) > -1;
 
 		init();
 	}

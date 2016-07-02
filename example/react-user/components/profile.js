@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Treeful from '../../../src/treeful-dev';
+import Treeful from '../../../src/treeful';
 
 export default class Profile extends Component {
 	constructor() {

@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import CounterControl from './components/counter-control';
 import Counter from './components/counter';
-import Treeful from '../../src/treeful-dev';
+import Treeful from '../../src/treeful';
 
 class App extends Component {
 	constructor () {
 		super();
+		Treeful.enableDev();
 		Treeful.addNode('count', 0);
 	}
 

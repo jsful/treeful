@@ -1,6 +1,6 @@
 {
   "name": "treeful",
-  "version": "1.3.1",
+  "version": "1.5.0",
   "description": "Let's not get overwhelmed. It's just a state manager.",
   "author": "Justin Jung <justinjung04@gmail.com>",
   "contributors": [
@@ -61,10 +61,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/justinjung04/treeful.git"
+    "url": "git+https://github.com/jsful/treeful.git"
   },
-  "homepage": "https://github.com/justinjung04/treeful",
+  "homepage": "https://github.com/jsful/treeful",
   "bugs": {
-    "url": "https://github.com/justinjung04/treeful/issues"
+    "url": "https://github.com/jsful/treeful/issues"
   }
 }

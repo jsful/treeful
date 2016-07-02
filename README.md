@@ -1,5 +1,5 @@
 # Treeful
-[![npm version][npm-img]][npm-url] [![build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url]
+[![npm version][npm-img]][npm-url] [![build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![monthly downloads][downloads-img]][downloads-url]
 
 It's a(nother) state manager! But let's not get overwhelmed. Treeful will simply do the following 4 things to your app.
 
@@ -89,6 +89,10 @@ Sets data in a node.
 * `id` (string) - string id of a node.
 * `data` (same as existing data type) - data to be set in the node. Data type CANNOT be modified.
 
+### shake(id)
+Shakes a node to call all callback functions without changing node data.
+* `id` (string) - string id of a node.
+
 ### subscribe(id, callback, [ignoreChildren])
 Assigns a callback function to a node. The callback function is triggered when the node or its child nodes get updated.
 * `id` (string) - string id of a node.
@@ -101,6 +105,9 @@ Assigns a callback function to a node. The callback function is triggered when t
 Resets the tree.
 
 ## Helper Methods
+
+### enableDev()
+Enables development tool. Currently, the development tool prints the tree in console log whenever setData is called.
 
 ### incrementData(id, [value])
 Increments data in a node.
@@ -133,7 +140,9 @@ MIT - please refer to [LICENSE](LICENSE).
 
 [npm-url]: https://www.npmjs.org/package/treeful
 [npm-img]: https://img.shields.io/npm/v/treeful.svg
-[travis-url]: https://travis-ci.org/justinjung04/treeful?branch=master
-[travis-img]: https://travis-ci.org/justinjung04/treeful.svg?branch=master
-[coveralls-url]: https://coveralls.io/github/justinjung04/treeful?branch=master
-[coveralls-img]: https://coveralls.io/repos/github/justinjung04/treeful/badge.svg?branch=master
+[downloads-url]: https://www.npmjs.org/package/treeful
+[downloads-img]: https://img.shields.io/npm/dm/treeful.svg
+[travis-url]: https://travis-ci.org/jsful/treeful?branch=master
+[travis-img]: https://travis-ci.org/jsful/treeful.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/jsful/treeful?branch=master
+[coveralls-img]: https://coveralls.io/repos/github/jsful/treeful/badge.svg?branch=master
