@@ -256,8 +256,21 @@ describe('treeful', () => {
 
 	it('converts tree object to a string', () => {
 		Treeful.addNode('1', 'first node')
-			.addNode('2', { second: 'node' });
+			.addNode('2', { second: 'node' })
+			.addNode('3', [ 1, 2 ])
+			.addNode('4', 12)
+			.addNode('5', false);
+		expect(Treeful.toString()).toContain('root: null');
 		expect(Treeful.toString()).toContain('1: first node');
+		expect(Treeful.toString()).toContain('2: {');
+		expect(Treeful.toString()).toContain('second: node');
+		expect(Treeful.toString()).toContain('}');
+		expect(Treeful.toString()).toContain('3: [');
+		expect(Treeful.toString()).toContain('1,');
+		expect(Treeful.toString()).toContain('2');
+		expect(Treeful.toString()).toContain(']');
+		expect(Treeful.toString()).toContain('4: 12');
+		expect(Treeful.toString()).toContain('5: false');
 		Treeful.destroy();
 	});
 
