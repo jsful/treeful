@@ -5,6 +5,10 @@ describe('treeful', () => {
 
 	/** constructor **/
 
+	it('returns a single instance', () => {
+		expect(Treeful).toEqual(Treeful);
+	});
+
 	it('exposes the public api without instanciating', () => {
 		const methods = Object.keys(Treeful);
 		expect(methods).toContain('addNode');
@@ -239,6 +243,22 @@ describe('treeful', () => {
 		Treeful.destroy();
 		let children = Object.keys(Treeful.getChildren('root'));
 		expect(children.length).toEqual(0);
+		Treeful.destroy();
+	});
+
+	/** print **/
+
+	it('enables dev condtions', () => {
+		Treeful.enableDev();
+		expect(Treeful.isDev().toString()).toEqual('true');
+		Treeful.destroy();
+	});
+
+	it('converts tree object to a string', () => {
+		Treeful.addNode('1', 'first node')
+			.addNode('2', { second: 'node' });
+		expect(Treeful.toString()).toContain('1: first node');
+		Treeful.destroy();
 	});
 
 	/** checkIdExists **/

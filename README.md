@@ -109,6 +109,12 @@ Resets the tree.
 ### enableDev()
 Enables development tool. Currently, the development tool prints the tree in console log whenever setData is called.
 
+### toString([id])
+Converts the tree into a string.
+* `id` (string, optional) - string id of a node to be printed. Default is `root`.
+
+**Returns** String representation of the tree.
+
 ### incrementData(id, [value])
 Increments data in a node.
 * `id` (string) - string id of a node. The node must contain data type of `number`.

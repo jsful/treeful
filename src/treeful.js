@@ -37,7 +37,7 @@ class Treeful {
 			checkTypeMutation(id, data);
 			_tree[id].setData(data);
 			if(_dev) {
-				iteratePrint('root', 0, '', '', []);
+				console.log(this.toString());
 			}
 		};
 
@@ -58,14 +58,14 @@ class Treeful {
 			init();
 		};
 
-		this.getTree = () => _tree;
-
-		this.getChildren = (id) => _tree[id].getChildren();
-
-		this.getCallbacks = (id) => _tree[id].getCallbacks();
-
 		this.enableDev = () => {
 			_dev = true;
+		};
+
+		this.toString = (id = 'root') => {
+			checkIdType(id);
+			checkIdExists(id);
+			return getTreeString(id, 0, '', '', []);
 		};
 
 		this.incrementData = (id, value = 1) => {
@@ -111,6 +111,14 @@ class Treeful {
 			return popArray[0];
 		};
 
+		this.isDev = () => _dev;
+
+		this.getTree = () => _tree;
+
+		this.getChildren = (id) => _tree[id].getChildren();
+
+		this.getCallbacks = (id) => _tree[id].getCallbacks();
+
 		const init = () => {
 			_tree = {};
 			_dev = false;
@@ -123,19 +131,16 @@ class Treeful {
 			_tree = Object.assign({}, branch);
 		};
 
-		const iteratePrint = (id, depth, outputString, prepand, stack) => {
+		const getTreeString = (id, depth, outputString, prepand, stack) => {
 			outputString += prepand + printTabs(depth) + printPerType(id, _tree[id].getData(), depth);
-
 			Object.keys(_tree[id].getChildren()).forEach((childId) => {
 				stack.splice(0, 0, { id: childId, depth: depth + 1 });
 			});
-
 			if(stack.length > 0) {
 				const obj = stack.splice(0, 1)[0];
-				iteratePrint(obj.id, obj.depth, outputString, '\n\n', stack);
-			} else {
-				console.log(outputString);
+				outputString = getTreeString(obj.id, obj.depth, outputString, '\n\n', stack);
 			}
+			return outputString;
 		};
 
 		const printObject = (obj, depth) => {
