@@ -5,13 +5,13 @@ Treeful.addNode('count', 0);
 let unsubscribe;
 
 const onClickInc = () => {
-	Treeful.setData('count', Treeful.getData('count') + 1);
+	Treeful.setData('count', (e) => e + 1);
 	// Or you may use a helper function
 	// Treeful.incrementData('count');
 };
 
 const onClickDec = () => {
-	Treeful.setData('count', Treeful.getData('count') - 1);
+	Treeful.setData('count', (e) => e - 1);
 	// Or you may use a helper function
 	// Treeful.decrementData('count');
 };

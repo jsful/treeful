@@ -199,6 +199,12 @@ class Treeful {
 			}
 		};
 
+		const checkIfDataIsFunction = (data) => {
+			if(isType(data, 'function')) {
+				throw new TypeError('Data cannot be a function.');
+			}
+		};
+
 		const checkDataType = (data, type) => {
 			if(!isType(data, type)) {
 				throw new TypeError('Data type must be a(n) ' + type + '.');

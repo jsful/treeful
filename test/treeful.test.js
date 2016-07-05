@@ -86,6 +86,15 @@ describe('treeful', () => {
 		Treeful.destroy();
 	});
 
+	it('accepts function and sets data of a node', () => {
+		Treeful.addNode('1', 1);
+		Treeful.setData('1', (e) => {
+			return e + 1;
+		});
+		expect(Treeful.getData('1')).toEqual(2);
+		Treeful.destroy();
+	});
+
 	/** subscribe **/
 
 	it('calls callback functions when a node\'s data is changed, and passes data', () => {

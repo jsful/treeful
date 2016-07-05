@@ -3,15 +3,14 @@ import Treeful from '../../../src/treeful';
 
 export default class TodoController extends Component {
 	addTodo() {
-		const data = Treeful.getData('todos');
-
-		data.push({ 
-			name: this.refs.name.value,
-			color: this.refs.color.value,
-			id: data.length + 1
+		Treeful.setData('todos', (e) => {
+			e.push({
+				name: this.refs.name.value,
+				color: this.refs.color.value,
+				id: e.length + 1
+			});
+			return e;
 		});
-
-		Treeful.setData('todos', data);
 
 		// Or you may use a helper function
 
