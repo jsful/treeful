@@ -66,11 +66,11 @@ Treeful.setData('todos', todos); //Might overwrite updates from another componen
 In order to prevent such error, you can use the following convention:
 ```js
 Treeful.setData('todos', (e) => {
-	e.push('todo2');
-	return e;
+    e.push('todo2');
+    return e;
 });
 ```
-Now the code guarantees that your node will be udpated based on the most current data!
+Now the code guarantees that your node will be udpated based on the most current data.
 
 To run all examples at http://localhost:3000:
 
