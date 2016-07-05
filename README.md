@@ -102,7 +102,7 @@ Gets data in a node.
 ### setData(id, data)
 Sets data in a node.
 * `id` (string) - string id of a node.
-* `data` (anything) - data to be set in the node. Data type CANNOT be modified.
+* `data` (anything) - data to be set in the node OR a function that returns new data based on current data. Data type CANNOT be modified.
 
 ### shake(id)
 Shakes a node to call all callback functions without changing node data.
