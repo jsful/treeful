@@ -33,9 +33,14 @@ class Treeful {
 		this.setData = (id, data) => {
 			checkIdType(id);
 			checkIdExists(id);
-			checkIfDataIsFunction(data);
-			checkTypeMutation(id, data);
-			_tree[id].setData(data);
+			if(isType(data, 'function')) {
+				let value = data(_tree[id].getData());
+				checkTypeMutation(id, value);
+				_tree[id].setData(value);
+			} else {
+				checkTypeMutation(id, data);
+				_tree[id].setData(data);
+			}
 			if(_dev) {
 				console.log(this.toString());
 			}
@@ -191,12 +196,6 @@ class Treeful {
 		const checkIdType = (id) => {
 			if(!isType(id, 'string')) {
 				throw new TypeError('Id must be a string.');
-			}
-		};
-
-		const checkIfDataIsFunction = (data) => {
-			if(isType(data, 'function')) {
-				throw new TypeError('Data cannot be a function.');
 			}
 		};
 
