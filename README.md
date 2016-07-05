@@ -57,6 +57,21 @@ function callbackTodos(data, node) {
 }
 ```
 
+**Note:** If you want to modify data based on current data, the following might be dangerous:
+```js
+let todos = Treeful.getData('todos'); //oldData = [ 'todo1' ]
+todos.push('todo2'); //Another component might have updated 'todos' node already!
+Treeful.setData('todos', todos); //Might overwrite updates from another component!
+```
+In order to prevent such error, you can use the following convention:
+```js
+Treeful.setData('todos', (e) => {
+	e.push('todo2');
+	return e;
+});
+```
+Now the code guarantees that your node will be udpated based on the most current data!
+
 To run all examples at http://localhost:3000:
 
 ```sh
@@ -87,7 +102,7 @@ Gets data in a node.
 ### setData(id, data)
 Sets data in a node.
 * `id` (string) - string id of a node.
-* `data` (same as existing data type) - data to be set in the node. Data type CANNOT be modified.
+* `data` (anything) - data to be set in the node. Data type CANNOT be modified.
 
 ### shake(id)
 Shakes a node to call all callback functions without changing node data.
