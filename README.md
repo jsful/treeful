@@ -9,10 +9,10 @@ It's a(nother) state manager! But let's not get overwhelmed. Treeful simply prov
 
 That's it. No steep learning curve, no configuration. And regardless of its simplicity, Treeful has distinct characteristics that makes it powerful.
 
-1. **Less code** - Minimal lines of code are sufficient. No extra files needed.
-2. **Tree structure** - Your state can be nested, and subscribing to parent will automatically subscribe to its children.
-3. **Efficient data transfer** - You won't pass around whole tree. Only the subscribed set will be passed for efficiency.
-4. **Framework independent** - No wrappers needed. Keep your code as is.
+* **Less code** - Minimal lines of code are sufficient. No extra files needed.
+* **Tree structure** - Your state can be nested, and subscribing to parent will automatically subscribe to its children.
+* **Efficient data transfer** - You won't pass around whole tree. Only the subscribed set will be passed for efficiency.
+* **Framework independent** - No wrappers needed. Keep your code as is.
 
 ### Install
 ```sh
