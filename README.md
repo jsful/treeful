@@ -1,7 +1,7 @@
 # Treeful
 [![npm version][npm-img]][npm-url] [![build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![monthly downloads][downloads-img]][downloads-url]
 
-It's a(nother) state manager! But let's not get overwhelmed. Treeful simply provides the following 3 things to your app.
+It's a(nother) state manager! But let's not get overwhelmed. Treeful simply provides the following to your app.
 
 * Single global object contains all states.
 * Subset of the states can be subscribed with callback functions.
