@@ -3,10 +3,9 @@
 
 It's a(nother) state manager! But let's not get overwhelmed. Treeful simply provides the following 3 things to your app.
 
-1. Single global object contains all states.
-2. Subset of the states can be subscribed with callback functions.
-3. States can be updated.
-
+* Single global object contains all states.
+* Subset of the states can be subscribed with callback functions.
+* States can be updated.
 
 That's it. No steep learning curve, no configuration. And regardless of its simplicity, Treeful has distinct characteristics that makes it powerful.
 
