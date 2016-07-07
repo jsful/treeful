@@ -1,6 +1,7 @@
 example/
 src/
 test/
+tree.png
 .babelrc
 .eslintrc
 .travis.yml
