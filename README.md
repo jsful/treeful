@@ -7,6 +7,7 @@ It's a(nother) state manager! But let's not get overwhelmed. Treeful simply prov
 2. Subset of the states can be subscribed with callback functions.
 3. States can be updated.
 
+
 That's it. No steep learning curve, no configuration. And regardless of its simplicity, Treeful has distinct characteristics that makes it powerful.
 
 1. **Less code** - Minimal lines of code are sufficient. No extra files needed.
