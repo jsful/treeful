@@ -50,15 +50,13 @@ describe('treeful', () => {
 
 	it('defaults to null if data is not passed to node', () => {
 		Treeful.addNode('1');
-		let data = Treeful.getData('1');
-		expect(data).toEqual(null);
+		expect(Treeful.getData('1')).toEqual(null);
 		Treeful.destroy();
 	});
 
 	it('adds a node to root if parent is not specified', () => {
 		Treeful.addNode('1');
-		let children = Object.keys(Treeful.getChildren('root'));
-		expect(children).toContain('1');
+		expect(Object.keys(Treeful.getChildren('root'))).toContain('1');
 		Treeful.destroy();
 	});
 
