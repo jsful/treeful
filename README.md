@@ -24,9 +24,9 @@ First, import the package and create your tree (you don't need to instantiate)
 
 ```js
 import Treeful from 'treeful';
-Treeful.addNode('count', 0)             // Add node 'count' with value 0 (to 'root').
-    .addNode('todos', [], 'root')       // Add node 'todos' to 'root'.
-    .addNode('filter', 'all', 'todos'); // Add node 'filter' to 'todos' with value of 'all'.
+Treeful.addNode('count', 0)             // Add node 'count' with value 0 (to 'root')
+    .addNode('todos', [], 'root')       // Add node 'todos' to 'root'
+    .addNode('filter', 'all', 'todos'); // Add node 'filter' to 'todos' with value of 'all'
 ```
 
 Our tree now looks like this:
