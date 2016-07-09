@@ -11,6 +11,8 @@ class Treeful {
 		let _tree;
 		let _dev;
 
+		// Core APIs
+
 		this.addNode = (id, data = null, parent = 'root') => {
 			checkIdType(id);
 			checkDuplicate(id);
@@ -22,6 +24,13 @@ class Treeful {
 			_tree = Object.assign(_tree, branch);
 			_tree[parent].addNode(node);
 			return this;
+		};
+
+		this.subscribe = (id, callback, ignoreChildren = false) => {
+			checkIdType(id);
+			checkIdExists(id);
+			checkCallbackType(callback);
+			return _tree[id].subscribe(callback, ignoreChildren);
 		};
 
 		this.getData = (id) => {
@@ -52,26 +61,11 @@ class Treeful {
 			_tree[id].setData(_tree[id].getData());
 		};
 
-		this.subscribe = (id, callback, ignoreChildren = false) => {
-			checkIdType(id);
-			checkIdExists(id);
-			checkCallbackType(callback);
-			return _tree[id].subscribe(callback, ignoreChildren);
-		};
-
 		this.destroy = () => {
 			init();
 		};
 
-		this.enableDev = () => {
-			_dev = true;
-		};
-
-		this.toString = (id = 'root') => {
-			checkIdType(id);
-			checkIdExists(id);
-			return getTreeString(id, 0, '', '', []);
-		};
+		// Helper APIs
 
 		this.incrementData = (id, value = 1) => {
 			checkIdType(id);
@@ -115,6 +109,28 @@ class Treeful {
 			this.setData(id, array);
 			return popArray[0];
 		};
+
+		this.assignData = (id, data) => {
+			checkIdType(id);
+			checkIdExists(id);
+			const obj = this.getData(id);
+			checkDataType(obj, 'object');
+			this.setData(id, Object.assign(obj, data));
+		};
+
+		// Dev APIs
+
+		this.toString = (id = 'root') => {
+			checkIdType(id);
+			checkIdExists(id);
+			return getTreeString(id, 0, '', '', []);
+		};
+
+		this.enableDev = () => {
+			_dev = true;
+		};
+
+		// Private methods
 
 		this.isDev = () => _dev;
 

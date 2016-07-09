@@ -253,13 +253,78 @@ describe('treeful', () => {
 		Treeful.destroy();
 	});
 
-	/** print **/
+	/** incrementData / decrementData **/
 
-	it('enables dev condtions', () => {
-		Treeful.enableDev();
-		expect(Treeful.isDev().toString()).toEqual('true');
+	it('increments/decrements number when incrementData/decrementData is called', () => {
+		Treeful.addNode('1', 0);
+		Treeful.incrementData('1');
+		expect(Treeful.getData('1')).toEqual(1);
+		Treeful.incrementData('1', 2);
+		expect(Treeful.getData('1')).toEqual(3);
+		Treeful.decrementData('1');
+		expect(Treeful.getData('1')).toEqual(2);
+		Treeful.decrementData('1', 2);
+		expect(Treeful.getData('1')).toEqual(0);
 		Treeful.destroy();
 	});
+
+	/** toggleData **/
+
+	it('toogles boolean when toggleData is called', () => {
+		Treeful.addNode('1', true);
+		Treeful.toggleData('1');
+		expect(Treeful.getData('1')).toEqual(false);
+		Treeful.toggleData('1');
+		expect(Treeful.getData('1')).toEqual(true);
+		Treeful.destroy();
+	});
+
+	/** pushData / popData **/
+
+	it('pushes/pops item to an array when pushData/popData is called', () => {
+		Treeful.addNode('1', []);
+		Treeful.pushData('1', 10);
+		Treeful.pushData('1', 20);
+		expect(Treeful.getData('1')[0]).toEqual(10);
+		expect(Treeful.getData('1')[1]).toEqual(20);
+		expect(Treeful.popData('1')).toEqual(20);
+		expect(Treeful.getData('1').length).toEqual(1);
+		Treeful.destroy();
+	});
+
+	/** assignData **/
+
+	it('assigns data to the object when assignData is called', () => {
+		Treeful.addNode('1',
+			{
+				test1: 1
+			}
+		);
+		Treeful.assignData('1',
+			{
+				test1: 2
+			}
+		);
+		expect(Treeful.getData('1')).toEqual(
+			{
+				test1: 2
+			}
+		);
+		Treeful.assignData('1',
+			{
+				test2: 'string'
+			}
+		);
+		expect(Treeful.getData('1')).toEqual(
+			{
+				test1: 2,
+				test2: 'string'
+			}
+		);
+		Treeful.destroy();
+	});
+
+	/** print **/
 
 	it('converts tree object to a string', () => {
 		Treeful.addNode('1', 'first node')
@@ -278,6 +343,14 @@ describe('treeful', () => {
 		expect(Treeful.toString()).toContain(']');
 		expect(Treeful.toString()).toContain('4: 12');
 		expect(Treeful.toString()).toContain('5: false');
+		Treeful.destroy();
+	});
+
+	/** enableDev **/
+
+	it('enables dev condtions', () => {
+		Treeful.enableDev();
+		expect(Treeful.isDev().toString()).toEqual('true');
 		Treeful.destroy();
 	});
 
@@ -348,45 +421,6 @@ describe('treeful', () => {
 		expect(() => {
 			Treeful.setData('1', 'string');
 		}).toThrow();
-		Treeful.destroy();
-	});
-
-	/** incrementData / decrementData **/
-
-	it('increments/decrements number when incrementData/decrementData is called', () => {
-		Treeful.addNode('1', 0);
-		Treeful.incrementData('1');
-		expect(Treeful.getData('1')).toEqual(1);
-		Treeful.incrementData('1', 2);
-		expect(Treeful.getData('1')).toEqual(3);
-		Treeful.decrementData('1');
-		expect(Treeful.getData('1')).toEqual(2);
-		Treeful.decrementData('1', 2);
-		expect(Treeful.getData('1')).toEqual(0);
-		Treeful.destroy();
-	});
-
-	/** toggleData **/
-
-	it('toogles boolean when toggleData is called', () => {
-		Treeful.addNode('1', true);
-		Treeful.toggleData('1');
-		expect(Treeful.getData('1')).toEqual(false);
-		Treeful.toggleData('1');
-		expect(Treeful.getData('1')).toEqual(true);
-		Treeful.destroy();
-	});
-
-	/** pushData / popData **/
-
-	it('pushes/pops item to an array when pushData/popData is called', () => {
-		Treeful.addNode('1', []);
-		Treeful.pushData('1', 10);
-		Treeful.pushData('1', 20);
-		expect(Treeful.getData('1')[0]).toEqual(10);
-		expect(Treeful.getData('1')[1]).toEqual(20);
-		expect(Treeful.popData('1')).toEqual(20);
-		expect(Treeful.getData('1').length).toEqual(1);
 		Treeful.destroy();
 	});
 });
