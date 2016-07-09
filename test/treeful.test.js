@@ -295,32 +295,11 @@ describe('treeful', () => {
 	/** assignData **/
 
 	it('assigns data to the object when assignData is called', () => {
-		Treeful.addNode('1',
-			{
-				test1: 1
-			}
-		);
-		Treeful.assignData('1',
-			{
-				test1: 2
-			}
-		);
-		expect(Treeful.getData('1')).toEqual(
-			{
-				test1: 2
-			}
-		);
-		Treeful.assignData('1',
-			{
-				test2: 'string'
-			}
-		);
-		expect(Treeful.getData('1')).toEqual(
-			{
-				test1: 2,
-				test2: 'string'
-			}
-		);
+		Treeful.addNode('1', { test1: 1 });
+		Treeful.assignData('1', { test1: 2 });
+		expect(Treeful.getData('1')).toEqual({ test1: 2 });
+		Treeful.assignData('1', { test2: 'string' });
+		expect(Treeful.getData('1')).toEqual({ test1: 2, test2: 'string' });
 		Treeful.destroy();
 	});
 
