@@ -325,14 +325,6 @@ describe('treeful', () => {
 		Treeful.destroy();
 	});
 
-	/** enableDev **/
-
-	it('enables dev condtions', () => {
-		Treeful.enableDev();
-		expect(Treeful.isDev().toString()).toEqual('true');
-		Treeful.destroy();
-	});
-
 	/** checkIdExists **/
 
 	it('throws if a node id doesn\'t exist', () => {

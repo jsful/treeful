@@ -132,8 +132,6 @@ class Treeful {
 
 		// Private methods
 
-		this.isDev = () => _dev;
-
 		this.getTree = () => _tree;
 
 		this.getChildren = (id) => _tree[id].getChildren();
