@@ -5,10 +5,6 @@ describe('treeful', () => {
 
 	/** constructor **/
 
-	it('returns a single instance', () => {
-		expect(Treeful).toEqual(Treeful);
-	});
-
 	it('exposes the public api without instanciating', () => {
 		const methods = Object.keys(Treeful);
 		expect(methods).toContain('addNode');
@@ -331,7 +327,7 @@ describe('treeful', () => {
 		Treeful.addNode('1');
 		expect(() => {
 			Treeful.getData('2');
-		}).toThrow();
+		}).toThrow(/is not found/);
 		Treeful.destroy();
 	});
 
@@ -340,7 +336,7 @@ describe('treeful', () => {
 	it('throws if id is not a string', () => {
 		expect(() => {
 			Treeful.addNode(1);
-		}).toThrow();
+		}).toThrow(/Id must be a string/);
 		Treeful.destroy();
 	});
 
@@ -351,7 +347,7 @@ describe('treeful', () => {
 			Treeful.addNode('1', () => {
 				return false;
 			});
-		}).toThrow();
+		}).toThrow(/Data cannot be a function/);
 		Treeful.destroy();
 	});
 
@@ -361,7 +357,7 @@ describe('treeful', () => {
 		Treeful.addNode('1', true);
 		expect(() => {
 			Treeful.incrementData('1');
-		}).toThrow();
+		}).toThrow(/Data type must be a/);
 		Treeful.destroy();
 	});
 
@@ -371,7 +367,7 @@ describe('treeful', () => {
 		Treeful.addNode('1');
 		expect(() => {
 			Treeful.addNode('1');
-		}).toThrow();
+		}).toThrow(/Cannot use duplicate id/);
 		Treeful.destroy();
 	});
 
@@ -381,7 +377,7 @@ describe('treeful', () => {
 		Treeful.addNode('1');
 		expect(() => {
 			Treeful.subscribe('1', 10);
-		}).toThrow();
+		}).toThrow(/Callback must be a function/);
 		Treeful.destroy();
 	});
 
@@ -391,7 +387,7 @@ describe('treeful', () => {
 		Treeful.addNode('1', 10);
 		expect(() => {
 			Treeful.setData('1', 'string');
-		}).toThrow();
+		}).toThrow(/Data type cannot be mutated from/);
 		Treeful.destroy();
 	});
 });
