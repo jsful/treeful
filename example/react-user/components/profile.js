@@ -5,8 +5,8 @@ export default class Profile extends Component {
 	constructor() {
 		super();
 		this.state = {
-			username: Treeful.getData('username'),
-			isLoggedIn: Treeful.getData('login')
+			username: Treeful.get('username'),
+			isLoggedIn: Treeful.get('login')
 		};
 	}
 

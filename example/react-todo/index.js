@@ -9,11 +9,11 @@ import Todo from './components/todo';
 class App extends Component {
 	constructor () {
 		super();
-		Treeful.enableDev();
-		Treeful.addNode('todos', []);
+		Treeful.dev();
+		Treeful.add('todos', []);
 
 		this.state = {
-			todos: Treeful.getData('todos')
+			todos: Treeful.get('todos')
 		};
 	}
 

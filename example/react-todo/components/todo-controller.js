@@ -3,7 +3,7 @@ import Treeful from '../../../src/treeful';
 
 export default class TodoController extends Component {
 	addTodo() {
-		Treeful.setData('todos', (e) => {
+		Treeful.set('todos', (e) => {
 			e.push({
 				name: this.refs.name.value,
 				color: this.refs.color.value,
@@ -14,10 +14,10 @@ export default class TodoController extends Component {
 
 		// Or you may use a helper function
 
-		// Treeful.pushData('todos', {
+		// Treeful.push('todos', {
 		// 	name: this.refs.name.value,
 		// 	color: this.refs.color.value,
-		// 	id: Treeful.getData('todos').length + 1
+		// 	id: Treeful.get('todos').length + 1
 		// });
 	}
 

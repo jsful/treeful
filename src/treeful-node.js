@@ -6,7 +6,7 @@ export default class TreefulNode {
 		let _children = {};
 		let _hashId = 0;
 		
-		this.addNode = (node) => {
+		this.add = (node) => {
 			const branch = {};
 			branch[node.getId()] = node;
 			_children = Object.assign(_children, branch);

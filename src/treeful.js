@@ -13,7 +13,7 @@ class Treeful {
 
 		// Core APIs
 
-		this.addNode = (id, data = null, parent = 'root') => {
+		this.add = (id, data = null, parent = 'root') => {
 			checkIdType(id);
 			checkDuplicate(id);
 			checkIfDataIsFunction(data);
@@ -22,7 +22,7 @@ class Treeful {
 			const branch = {};
 			branch[id] = node;
 			_tree = Object.assign(_tree, branch);
-			_tree[parent].addNode(node);
+			_tree[parent].add(node);
 			return this;
 		};
 
@@ -33,13 +33,13 @@ class Treeful {
 			return _tree[id].subscribe(callback, ignoreChildren);
 		};
 
-		this.getData = (id) => {
+		this.get = (id) => {
 			checkIdType(id);
 			checkIdExists(id);
 			return _tree[id].getData();
 		};
 
-		this.setData = (id, data) => {
+		this.set = (id, data) => {
 			checkIdType(id);
 			checkIdExists(id);
 			if(isType(data, 'function')) {
@@ -67,55 +67,55 @@ class Treeful {
 
 		// Helper APIs
 
-		this.incrementData = (id, value = 1) => {
+		this.increment = (id, value = 1) => {
 			checkIdType(id);
 			checkIdExists(id);
-			const number = this.getData(id);
+			const number = this.get(id);
 			checkDataType(number, 'number');
-			this.setData(id, number + value);
+			this.set(id, number + value);
 		};
 
-		this.decrementData = (id, value = 1) => {
+		this.decrement = (id, value = 1) => {
 			checkIdType(id);
 			checkIdExists(id);
-			const number = this.getData(id);
+			const number = this.get(id);
 			checkDataType(number, 'number');
-			this.setData(id, number - value);
+			this.set(id, number - value);
 		};
 
-		this.toggleData = (id) => {
+		this.toggle = (id) => {
 			checkIdType(id);
 			checkIdExists(id);
-			const boolean = this.getData(id);
+			const boolean = this.get(id);
 			checkDataType(boolean, 'boolean');
-			this.setData(id, !boolean);
+			this.set(id, !boolean);
 		};
 
-		this.pushData = (id, data) => {
+		this.push = (id, data) => {
 			checkIdType(id);
 			checkIdExists(id);
-			const array = this.getData(id);
+			const array = this.get(id);
 			checkDataType(array, 'array');
 			array.push(data);
-			this.setData(id, array);
+			this.set(id, array);
 		};
 
-		this.popData = (id) => {
+		this.pop = (id) => {
 			checkIdType(id);
 			checkIdExists(id);
-			const array = this.getData(id);
+			const array = this.get(id);
 			checkDataType(array, 'array');
 			const popArray = array.splice(array.length - 1, 1);
-			this.setData(id, array);
+			this.set(id, array);
 			return popArray[0];
 		};
 
-		this.assignData = (id, data) => {
+		this.assign = (id, data) => {
 			checkIdType(id);
 			checkIdExists(id);
-			const obj = this.getData(id);
+			const obj = this.get(id);
 			checkDataType(obj, 'object');
-			this.setData(id, Object.assign(obj, data));
+			this.set(id, Object.assign(obj, data));
 		};
 
 		// Dev APIs
@@ -126,7 +126,7 @@ class Treeful {
 			return getTreeString(id, 0, '', '', []);
 		};
 
-		this.enableDev = () => {
+		this.dev = () => {
 			_dev = true;
 		};
 
@@ -238,8 +238,8 @@ class Treeful {
 		};
 
 		const checkTypeMutation = (id, data) => {
-			if(!isType(this.getData(id), null) && !isType(data, getType(this.getData(id)))) {
-				throw new Error('Data type cannot be mutated from ' + getType(this.getData(id)) + ' to ' + getType(data) + '.');
+			if(!isType(this.get(id), null) && !isType(data, getType(this.get(id)))) {
+				throw new Error('Data type cannot be mutated from ' + getType(this.get(id)) + ' to ' + getType(data) + '.');
 			}
 		};
 

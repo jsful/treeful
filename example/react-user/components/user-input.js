@@ -5,7 +5,7 @@ export default class UserInput extends Component {
 	constructor() {
 		super();
 		this.state = {
-			isLoggedIn: Treeful.getData('login')
+			isLoggedIn: Treeful.get('login')
 		};
 	}
 
@@ -18,13 +18,13 @@ export default class UserInput extends Component {
 	}
 
 	updateUsername() {
-		Treeful.setData('username', this.refs.username.value);
+		Treeful.set('username', this.refs.username.value);
 	}
 
 	toggleLogin() {
-		Treeful.setData('login', !Treeful.getData('login'));
+		Treeful.set('login', !Treeful.get('login'));
 		// Or you may use a helper function
-		// Treeful.toggleData('login');
+		// Treeful.toggle('login');
 	}
 
 	updateLogin(isLoggedIn) {
@@ -35,7 +35,7 @@ export default class UserInput extends Component {
 		return (
 			<div className='section'>
 				<h2>User Input</h2>
-				<p>Username: </p> <input type='text' ref='username' defaultValue={Treeful.getData('username')}  />
+				<p>Username: </p> <input type='text' ref='username' defaultValue={Treeful.get('username')}  />
 				<button onClick={this.updateUsername.bind(this)}>UPDATE</button>
 				<br />
 				<button onClick={this.toggleLogin}>{this.state.isLoggedIn ? 'Logout' : 'Login'}</button>

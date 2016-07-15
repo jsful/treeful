@@ -5,7 +5,7 @@ export default class Warning extends Component {
 	constructor() {
 		super();
 		this.state = {
-			isLoggedIn: Treeful.getData('login')
+			isLoggedIn: Treeful.get('login')
 		};
 	}
 

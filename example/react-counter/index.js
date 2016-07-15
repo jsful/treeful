@@ -7,8 +7,8 @@ import Treeful from '../../src/treeful';
 class App extends Component {
 	constructor () {
 		super();
-		Treeful.enableDev();
-		Treeful.addNode('count', 0);
+		Treeful.dev();
+		Treeful.add('count', 0);
 	}
 
 	render() {
