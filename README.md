@@ -24,9 +24,9 @@ First, import the package and create your tree (you don't need to instantiate)
 
 ```js
 import Treeful from 'treeful';
-Treeful.addNode('count', 0)             // Add node 'count' with value 0 (to 'root')
-    .addNode('todos', [], 'root')       // Add node 'todos' to 'root'
-    .addNode('filter', 'all', 'todos'); // Add node 'filter' to 'todos' with value of 'all'
+Treeful.add('count', 0)             // Add node 'count' with value 0 (to 'root')
+    .add('todos', [], 'root')       // Add node 'todos' to 'root'
+    .add('filter', 'all', 'todos'); // Add node 'filter' to 'todos' with value of 'all'
 ```
 
 Our tree now looks like this:
@@ -41,8 +41,8 @@ Treeful.subscribe('todos', callbackTodos);
 
 Get and set data by calling:
 ```js
-let oldData = Treeful.getData('filter'); // oldData = 'all'
-Treeful.setData('filter', 'completed');
+let oldData = Treeful.get('filter'); // oldData = 'all'
+Treeful.set('filter', 'completed');
 // Node 'filter' is updated, and it is a child of 'todos' that is subscribed to callbackTodos
 ```
 
