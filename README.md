@@ -1,5 +1,5 @@
 # Treeful
-[![npm version][npm-img]][npm-url] [![build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![monthly downloads][downloads-img]][downloads-url]
+[![npm version][npm-img]][npm-url] [![build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url]
 
 It's a(nother) state manager! But let's not get overwhelmed. Treeful simply provides the following to your app.
 
@@ -66,8 +66,6 @@ MIT - please refer to [license](https://github.com/jsful/treeful/blob/master/LIC
 
 [npm-url]: https://www.npmjs.org/package/treeful
 [npm-img]: https://img.shields.io/npm/v/treeful.svg
-[downloads-url]: https://www.npmjs.org/package/treeful
-[downloads-img]: https://img.shields.io/npm/dm/treeful.svg
 [travis-url]: https://travis-ci.org/jsful/treeful?branch=master
 [travis-img]: https://travis-ci.org/jsful/treeful.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/jsful/treeful?branch=master
